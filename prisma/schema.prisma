@@ -1,0 +1,102 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Usuarios {
+  id                                  Int              @id @default(autoincrement())
+  name                                String
+  cpf_cnpj                            String           @unique @db.Char(14)
+  email                               String           @unique
+  password                            String
+  transferencias_usuario_origem       Transferencias[] @relation("transferencias_usuario_origem")
+  transferencias_usuario_destinatario Transferencias[] @relation("transferencias_usuario_destinatario")
+  UsuariosRoles                       UsuariosRoles[]
+
+  @@map("usuarios")
+}
+
+model Permissions {
+  id               Int                @id @default(autoincrement())
+  name             String
+  descricao        String
+  PermissionsRoles PermissionsRoles[]
+
+  @@map("permissions")
+}
+
+model Roles {
+  id               Int                @id @default(autoincrement())
+  name             String
+  descricao        String
+  PermissionsRoles PermissionsRoles[]
+  UsuariosRoles    UsuariosRoles[]
+
+  @@map("roles")
+}
+
+model PermissionsRoles {
+  id            Int         @id @default(autoincrement())
+  role_id       Int
+  permission_id Int
+  roles         Roles       @relation(fields: [role_id], references: [id])
+  Permissions   Permissions @relation(fields: [permission_id], references: [id])
+
+  @@map("permissions_roles")
+}
+
+model UsuariosRoles {
+  id         Int      @id @default(autoincrement())
+  usuario_id Int
+  role_id    Int
+  Usuarios   Usuarios @relation(fields: [usuario_id], references: [id])
+  Roles      Roles    @relation(fields: [role_id], references: [id])
+
+  @@map("usuarios_roles")
+}
+
+model TipoCarteira {
+  id        Int         @id @default(autoincrement())
+  name      String
+  descricao String
+  Carteiras Carteiras[]
+
+  @@map("tipos_carteira")
+}
+
+model Carteiras {
+  id                                   Int              @id @default(autoincrement())
+  saldo                                Decimal          @db.Decimal(10, 2)
+  usuario_id                           Int
+  tipo_id                              Int
+  TipoCarteira                         TipoCarteira     @relation(fields: [tipo_id], references: [id])
+  transferencias_carteira_origem       Transferencias[] @relation("transferencias_carteira_origem")
+  transferencias_carteira_destinatario Transferencias[] @relation("transferencias_carteira_destinatario")
+
+  @@map("carteiras")
+}
+
+model Transferencias {
+  id                                   Int                  @id @default(autoincrement())
+  value                                Decimal              @db.Decimal(10, 2)
+  status                               TransferenciasStatus @default(Pendente)
+  carteira_origem                      Int
+  carteira_destinatario                Int
+  usuario_origem                       Int
+  usuario_destinatario                 Int
+  transferencias_carteira_origem       Carteiras            @relation("transferencias_carteira_origem", fields: [carteira_origem], references: [id])
+  transferencias_carteira_destinatario Carteiras            @relation("transferencias_carteira_destinatario", fields: [carteira_destinatario], references: [id])
+  transferencias_usuario_origem        Usuarios             @relation("transferencias_usuario_origem", fields: [usuario_origem], references: [id])
+  transferencias_usuario_destinatario  Usuarios             @relation("transferencias_usuario_destinatario", fields: [usuario_destinatario], references: [id])
+
+  @@map("transferencias")
+}
+
+enum TransferenciasStatus {
+  Pendente
+  Finalizado
+}
