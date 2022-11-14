@@ -17,6 +17,7 @@ CREATE TABLE `permissions` (
     `name` VARCHAR(191) NOT NULL,
     `descricao` VARCHAR(191) NOT NULL,
 
+    UNIQUE INDEX `permissions_name_key`(`name`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -26,6 +27,7 @@ CREATE TABLE `roles` (
     `name` VARCHAR(191) NOT NULL,
     `descricao` VARCHAR(191) NOT NULL,
 
+    UNIQUE INDEX `roles_name_key`(`name`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 

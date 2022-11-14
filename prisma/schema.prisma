@@ -22,7 +22,7 @@ model Usuarios {
 
 model Permissions {
   id               Int                @id @default(autoincrement())
-  name             String
+  name             String             @unique
   descricao        String
   PermissionsRoles PermissionsRoles[]
 
@@ -31,7 +31,7 @@ model Permissions {
 
 model Roles {
   id               Int                @id @default(autoincrement())
-  name             String
+  name             String             @unique
   descricao        String
   PermissionsRoles PermissionsRoles[]
   UsuariosRoles    UsuariosRoles[]
