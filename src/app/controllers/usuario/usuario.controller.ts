@@ -1,12 +1,12 @@
-import { CreateUsuarioDto } from '../../persistence/dto/createUsuario.dto';
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
-import { UsuarioService } from '../../services/usuario/usuario.service';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { CreateUsuarioDto } from '../../persistence/dto/createUsuario.dto';
+import { UsuarioService } from '../../services/usuario/usuario.service';
 
 @Controller('api/usuarios')
 @ApiTags('Usuarios')
 export class UsuarioController {
-  constructor(private usuarioService: UsuarioService) {}
+  constructor(private readonly usuarioService: UsuarioService) {}
   @Get()
   @ApiOperation({ summary: 'Listar todas os usuários' })
   async findAll() {

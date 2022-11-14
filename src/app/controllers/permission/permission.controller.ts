@@ -1,12 +1,12 @@
-import { PermissionService } from './../../services/permission/permission.service';
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { CreatePermissionDto } from 'src/app/persistence/dto/createPermission.dto';
+import { PermissionService } from '../../services/permission/permission.service';
+import { CreatePermissionDto } from '../../persistence/dto/createPermission.dto';
 
 @Controller('api/permission')
 @ApiTags('Permissions')
 export class PermissionController {
-  constructor(private permissionService: PermissionService) {}
+  constructor(private readonly permissionService: PermissionService) {}
   @Get()
   @ApiOperation({ summary: 'Listar todas as permissions' })
   async findAll() {

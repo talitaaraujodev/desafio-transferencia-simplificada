@@ -19,11 +19,11 @@ export class PermissionRepository {
   async findByName(name: string): Promise<Permission> {
     return await this.prisma.permissions.findUnique({ where: { name } });
   }
-  async findByIds(entity: Permission[]): Promise<Permission[]> {
+  async findManyByIds(ids: number[]): Promise<Permission[]> {
     return await this.prisma.permissions.findMany({
       where: {
         id: {
-          in: entity.map((permission) => permission.id),
+          in: ids,
         },
       },
     });
