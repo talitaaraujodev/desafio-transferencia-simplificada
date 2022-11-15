@@ -4,7 +4,7 @@ import { UsuarioRoleRepository } from './../../persistence/repositories/usuarioR
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { UsuarioRepository } from '../../persistence/repositories/usuario/usuario.repository';
 import { Usuario } from '../../persistence/entities/usuario.entity';
-import { CreateUsuarioDto } from 'src/app/persistence/dto/createUsuario.dto';
+import { CreateUsuarioDto } from '../../persistence/dto/createUsuario.dto';
 
 @Injectable()
 export class UsuarioService {

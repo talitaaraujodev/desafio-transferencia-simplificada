@@ -14,16 +14,10 @@ const mockSut = () => {
     ),
     new Usuario(
       'any_name',
-      '50000006640',
+      '50000006642',
       'any_email2@email.com',
       'any_password',
       2,
-    ),
-    new Usuario(
-      'any_name',
-      '50000006640',
-      'any_email3@email.com',
-      'any_password',
     ),
   ];
   const newUsuario = new Usuario(
@@ -73,7 +67,7 @@ describe('UsuarioController unit tests', () => {
 
     expect(usuarioController.findAll()).rejects.toThrowError();
   });
-  it('should create a new todo item successfully', async () => {
+  it('should create a new user successfully', async () => {
     const body: CreateUsuarioRoleDto = {
       name: 'any_name',
       cpf_cnpj: '50000006640',
