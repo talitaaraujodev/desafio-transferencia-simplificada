@@ -12,7 +12,7 @@ export class RoleService {
   constructor(
     private readonly roleRepository: RoleRepository,
     private readonly permissionRepository: PermissionRepository,
-    private readonly permissionRole: PermissionRoleRepository,
+    private readonly permissionRoleRepository: PermissionRoleRepository,
   ) {}
 
   async create(data: CreateRolePermissionDto): Promise<Role> {
@@ -26,7 +26,7 @@ export class RoleService {
     const createRole = await this.roleRepository.create(role);
     const findLastRole = await this.roleRepository.findByLastId();
 
-    const createPermissionRole = await this.permissionRole.create(
+    const createPermissionRole = await this.permissionRoleRepository.create(
       findLastRole.id,
       data.permissions,
     );

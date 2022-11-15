@@ -17,7 +17,6 @@ const mockSut = () => {
       '50000006642',
       'any_email2@email.com',
       'any_password',
-      2,
     ),
   ];
   const newUsuario = new Usuario(
