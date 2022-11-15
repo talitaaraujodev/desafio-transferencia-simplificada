@@ -1,6 +1,15 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { CreateUsuarioRoleDto } from './../../persistence/dto/createUsuarioRole.dto';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  Post,
+} from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { CreateUsuarioDto } from '../../persistence/dto/createUsuario.dto';
 import { UsuarioService } from '../../services/usuario/usuario.service';
 
 @Controller('api/usuarios')
@@ -13,8 +22,9 @@ export class UsuarioController {
     return this.usuarioService.findAll();
   }
   @Post()
+  @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Adicionar uma novo usuário' })
-  async create(@Body() body: CreateUsuarioDto) {
+  async create(@Body() body: CreateUsuarioRoleDto) {
     return this.usuarioService.create(body);
   }
   @Get(':id')

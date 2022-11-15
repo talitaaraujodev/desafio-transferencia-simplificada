@@ -7,5 +7,6 @@ import { PermissionRepository } from '../persistence/repositories/permission/per
 @Module({
   controllers: [PermissionController],
   providers: [PermissionService, PermissionRepository, PrismaService],
+  exports: [PermissionRepository],
 })
 export class PermissionModule {}

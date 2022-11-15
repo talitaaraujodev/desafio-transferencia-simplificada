@@ -1,10 +1,11 @@
-import { Permission } from './../../persistence/entities/permission.entity';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { CreateRolePermissionDto } from '../../persistence/dto/createRolePermission.dto';
+import { CreateRoleDto } from '../../persistence/dto/createRole.dto';
+import { Permission } from './../../persistence/entities/permission.entity';
 import { Role } from './../../persistence/entities/role.entity';
 import { PermissionRepository } from '../../persistence/repositories/permission/permission.repository';
 import { RoleRepository } from '../../persistence/repositories/role/RoleRepository';
 import { PermissionRoleRepository } from '../../persistence/repositories/permissionRole/permissionRole.repository';
-import { CreateRoleDto } from 'src/app/persistence/dto/createRole.dto';
 
 @Injectable()
 export class RoleService {
@@ -14,11 +15,11 @@ export class RoleService {
     private readonly permissionRole: PermissionRoleRepository,
   ) {}
 
-  async create(data: CreateRoleDto): Promise<Role> {
+  async create(data: CreateRolePermissionDto): Promise<Role> {
     await this.verifyExistsRole(data.name);
     await this.permissionRepository.findManyByIds(data.permissions);
 
-    const role = {
+    const role: CreateRoleDto = {
       name: data.name,
       descricao: data.descricao,
     };
@@ -64,5 +65,12 @@ export class RoleService {
       throw new HttpException('Permission já existente', HttpStatus.CONFLICT);
     }
     return await this.permissionRepository.findManyByIds(permissions);
+  }
+  async verifyExistsRoles(ids: number[]): Promise<Role[]> {
+    const roles: Role[] = await this.roleRepository.findByIds(ids);
+    if (roles.length === 0) {
+      throw new HttpException('Roles são inválidas', HttpStatus.CONFLICT);
+    }
+    return roles;
   }
 }

@@ -20,9 +20,9 @@ export class RoleRepository {
       take: 1,
     });
   }
-  async findByIds(entity: Role[]): Promise<Role[]> {
+  async findByIds(ids: number[]): Promise<Role[]> {
     return await this.prisma.roles.findMany({
-      where: { id: { in: entity.map((permission) => permission.id) } },
+      where: { id: { in: ids } },
     });
   }
 }

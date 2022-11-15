@@ -1,9 +1,16 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Post,
+} from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { PermissionService } from '../../services/permission/permission.service';
 import { CreatePermissionDto } from '../../persistence/dto/createPermission.dto';
 
-@Controller('api/permission')
+@Controller('api/permissions')
 @ApiTags('Permissions')
 export class PermissionController {
   constructor(private readonly permissionService: PermissionService) {}
@@ -13,7 +20,8 @@ export class PermissionController {
     return this.permissionService.findAll();
   }
   @Post()
-  @ApiOperation({ summary: 'Adicionar uma novo usuário' })
+  @HttpCode(HttpStatus.CREATED)
+  @ApiOperation({ summary: 'Adicionar uma nova permissão' })
   async create(@Body() body: CreatePermissionDto) {
     return this.permissionService.create(body);
   }

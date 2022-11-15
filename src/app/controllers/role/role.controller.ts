@@ -1,6 +1,13 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Post,
+} from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { CreateRoleDto } from 'src/app/persistence/dto/createRole.dto';
+import { CreateRolePermissionDto } from './../../persistence/dto/createRolePermission.dto';
 import { RoleService } from '../../services/role/role.service';
 
 @Controller('api/roles')
@@ -13,8 +20,9 @@ export class RoleController {
     return await this.roleService.findAll();
   }
   @Post()
+  @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Adicionar uma nova role' })
-  async create(@Body() body: CreateRoleDto) {
+  async create(@Body() body: CreateRolePermissionDto) {
     return await this.roleService.create(body);
   }
 }

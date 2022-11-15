@@ -15,5 +15,6 @@ import { RoleController } from './../controllers/role/role.controller';
     PermissionRoleRepository,
     PrismaService,
   ],
+  exports: [RoleService, RoleRepository],
 })
 export class RoleModule {}

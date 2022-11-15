@@ -28,6 +28,14 @@ export class UsuarioRepository {
   async findByCpfCnpj(cpf_cnpj: string): Promise<Usuario> {
     return await this.prisma.usuarios.findUnique({ where: { cpf_cnpj } });
   }
+
+  async findByLastId(): Promise<Usuario> {
+    return await this.prisma.usuarios.findFirst({
+      orderBy: { id: 'desc' },
+      take: 1,
+    });
+  }
+
   async delete(id: number): Promise<Usuario> {
     return await this.prisma.usuarios.delete({ where: { id } });
   }
