@@ -17,6 +17,7 @@ export class UsuarioService {
     await this.verifyExistsEmail(data.email);
     await this.verifyExistsCpfCnpj(data.cpf_cnpj);
     await this.roleService.verifyExistsRoles(data.roles);
+
     const user: CreateUsuarioDto = {
       name: data.name,
       cpf_cnpj: data.cpf_cnpj,
@@ -47,14 +48,20 @@ export class UsuarioService {
   async verifyExistsEmail(email: string): Promise<Usuario> {
     const emailExists = await this.usuarioRepository.findByEmail(email);
     if (emailExists) {
-      throw new HttpException('E-mail já existente', HttpStatus.CONFLICT);
+      throw new HttpException(
+        'Usuário já existente existente por e-mail',
+        HttpStatus.CONFLICT,
+      );
     }
     return await this.usuarioRepository.findByEmail(email);
   }
   async verifyExistsCpfCnpj(cpf_cnpj: string): Promise<Usuario> {
     const cpfCnpjExists = await this.usuarioRepository.findByCpfCnpj(cpf_cnpj);
     if (cpfCnpjExists) {
-      throw new HttpException('Cpf/Cnpj já existente', HttpStatus.CONFLICT);
+      throw new HttpException(
+        'Usuário já existente por Cpf/Cnpj ',
+        HttpStatus.CONFLICT,
+      );
     }
     return await this.usuarioRepository.findByCpfCnpj(cpf_cnpj);
   }
@@ -62,11 +69,16 @@ export class UsuarioService {
     return await this.usuarioRepository.findAll();
   }
   async findOne(id: number): Promise<Usuario> {
-    const usuarioExists = await this.usuarioRepository.findOne(id);
-    if (usuarioExists) {
-      throw new HttpException('Usuário já existente', HttpStatus.BAD_REQUEST);
+    try {
+      const user = await this.usuarioRepository.findOne(id);
+      delete user.password;
+      return user;
+    } catch (error) {
+      throw new HttpException(
+        'Usuário não foi encontrado',
+        HttpStatus.CONFLICT,
+      );
     }
-    return await this.usuarioRepository.findOne(id);
   }
   async delete(id: number): Promise<Usuario> {
     await this.findOne(id);

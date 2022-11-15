@@ -1,14 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty } from 'class-validator';
+import { CreateRoleDto } from 'src/app/persistence/dto/createRole.dto';
+import { IsArray } from 'class-validator';
 
-export class CreateRolePermissionDto {
-  @IsNotEmpty({ message: 'Nome é obrigatório' })
-  @ApiProperty()
-  name: string;
-  @IsNotEmpty({ message: 'Descrição é obrigatório' })
-  @ApiProperty()
-  descricao: string;
-  @IsNotEmpty({ message: 'Permissions é obrigatório' })
+export class CreateRolePermissionDto extends CreateRoleDto {
+  @IsArray()
   @ApiProperty()
   permissions: number[];
 }
