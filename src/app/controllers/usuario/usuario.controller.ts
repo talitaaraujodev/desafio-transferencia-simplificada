@@ -12,7 +12,7 @@ import {
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { UsuarioService } from '../../services/usuario/usuario.service';
 
-@Controller('api/usuarios')
+@Controller({ path: 'usuarios' })
 @ApiTags('Usuarios')
 export class UsuarioController {
   constructor(private readonly usuarioService: UsuarioService) {}

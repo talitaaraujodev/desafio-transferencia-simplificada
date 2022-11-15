@@ -21,5 +21,6 @@ import { PrismaService } from '../database/prisma.service';
     PermissionRoleRepository,
     PrismaService,
   ],
+  exports: [UsuarioService],
 })
 export class UsuarioModule {}

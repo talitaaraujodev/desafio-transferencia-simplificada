@@ -10,7 +10,7 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { PermissionService } from '../../services/permission/permission.service';
 import { CreatePermissionDto } from '../../persistence/dto/createPermission.dto';
 
-@Controller('api/permissions')
+@Controller({ path: 'permissions' })
 @ApiTags('Permissions')
 export class PermissionController {
   constructor(private readonly permissionService: PermissionService) {}
