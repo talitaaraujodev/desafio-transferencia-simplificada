@@ -36,11 +36,43 @@ export class CarteiraService {
     await this.findOne(id);
     return await this.carteiraRepository.delete(id);
   }
-
+  async;
   async update(id: number, data: UpdateCarteiraDto): Promise<Carteira> {
     await this.usuarioService.findOne(data.usuario_id);
     await this.tipoCarteiraService.findOne(data.tipo_id);
     await this.findOne(id);
     return await this.carteiraRepository.update(id, data);
+  }
+  async verifySaldo(id: number, value: number): Promise<Carteira> {
+    const carteira: Carteira = await this.findOne(id);
+    if (carteira.saldo < value) {
+      throw new HttpException(
+        'Saldo para a trâsferência insuficiente',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+    return carteira;
+  }
+  async decreaseSaldo(id: number, value: number): Promise<Carteira> {
+    const carteira = await this.findOne(id);
+    const saldoAtual = carteira.saldo - value;
+    const data: UpdateCarteiraDto = {
+      saldo: saldoAtual,
+      usuario_id: carteira.usuario_id,
+      tipo_id: carteira.tipo_id,
+    };
+
+    return await this.update(id, data);
+  }
+  async increaseSaldo(id: number, value: number): Promise<Carteira> {
+    const carteira = await this.findOne(id);
+    const saldoAtual = carteira.saldo + value;
+    const data: UpdateCarteiraDto = {
+      saldo: saldoAtual,
+      usuario_id: carteira.usuario_id,
+      tipo_id: carteira.tipo_id,
+    };
+
+    return await this.update(id, data);
   }
 }

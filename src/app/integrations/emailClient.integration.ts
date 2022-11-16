@@ -2,11 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { EmailClienteIntegrationImp } from './implementations/emailCliente.integration.imp';
 
 @Injectable()
-export class EmailClient {
+export class EmailClientIntegration {
   constructor(
     private readonly emailClienteIntegrationImp: EmailClienteIntegrationImp,
   ) {}
   async notifyEmail() {
-    return this.emailClienteIntegrationImp.notify();
+    return await this.emailClienteIntegrationImp.notify();
   }
 }

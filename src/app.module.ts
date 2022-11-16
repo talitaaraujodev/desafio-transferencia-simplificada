@@ -11,7 +11,7 @@ import { UsuarioModule } from './app/modules/usuario.module';
 import { PermissionModule } from './app/modules/permission.module';
 import { PrismaModule } from './app/database/prisma.module';
 import { AuthModule } from './app/modules/auth.module';
-import { TransacaoModule } from './app/modules/transacao.module';
+import { TransferenciaModule } from './app/modules/transferencia.module';
 import { PermissionMiddlewareCreator } from './app/middlewares/permission.middleware';
 import { AuthMiddleware } from './app/middlewares/auth.middleware';
 
@@ -24,7 +24,7 @@ import { AuthMiddleware } from './app/middlewares/auth.middleware';
     AuthModule,
     TipoCarteiraModule,
     CarteiraModule,
-    TransacaoModule,
+    TransferenciaModule,
   ],
 })
 export class AppModule implements NestModule {

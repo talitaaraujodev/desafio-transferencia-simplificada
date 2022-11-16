@@ -7,7 +7,7 @@ export class EmailClienteIntegrationImp {
     return await axios
       .get(this.BASE_URL)
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
