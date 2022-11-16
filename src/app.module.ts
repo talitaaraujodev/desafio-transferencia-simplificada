@@ -29,17 +29,13 @@ export class AppModule implements NestModule {
         { path: 'login', method: RequestMethod.POST },
         { path: 'usuarios', method: RequestMethod.POST },
       )
-      .forRoutes(
-        { path: 'usuarios', method: RequestMethod.ALL },
-        { path: 'roles', method: RequestMethod.ALL },
-        { path: 'permissions', method: RequestMethod.ALL },
-      );
+      .forRoutes({ path: 'usuarios', method: RequestMethod.ALL });
     consumer
       .apply(PermissionMiddlewareCreator(['ROLE_LOJISTA']))
-      .forRoutes(
-        { path: 'usuarios', method: RequestMethod.ALL },
-        { path: 'roles', method: RequestMethod.ALL },
-        { path: 'permissions', method: RequestMethod.ALL },
-      );
+      .exclude(
+        { path: 'login', method: RequestMethod.POST },
+        { path: 'usuarios', method: RequestMethod.POST },
+      )
+      .forRoutes({ path: 'usuarios', method: RequestMethod.ALL });
   }
 }

@@ -6,7 +6,7 @@ import {
   HttpStatus,
   Post,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { PermissionService } from '../../services/permission/permission.service';
 import { CreatePermissionDto } from '../../persistence/dto/createPermission.dto';
 
@@ -14,7 +14,7 @@ import { CreatePermissionDto } from '../../persistence/dto/createPermission.dto'
 @ApiTags('Permissions')
 export class PermissionController {
   constructor(private readonly permissionService: PermissionService) {}
-  @ApiBearerAuth('access-token')
+
   @Get()
   @ApiOperation({ summary: 'Listar todas as permissions' })
   async findAll() {

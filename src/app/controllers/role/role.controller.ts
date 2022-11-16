@@ -6,7 +6,7 @@ import {
   HttpStatus,
   Post,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CreateRolePermissionDto } from './../../persistence/dto/createRolePermission.dto';
 import { RoleService } from '../../services/role/role.service';
 
@@ -14,7 +14,7 @@ import { RoleService } from '../../services/role/role.service';
 @ApiTags('Roles')
 export class RoleController {
   constructor(private readonly roleService: RoleService) {}
-  @ApiBearerAuth('access-token')
+
   @Get()
   @ApiOperation({ summary: 'Listar todas as roles' })
   async findAll() {

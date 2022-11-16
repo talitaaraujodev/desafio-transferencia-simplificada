@@ -81,6 +81,7 @@ export class UsuarioService {
     }
   }
   async delete(id: number): Promise<Usuario> {
+    console.log(id);
     await this.findOne(id);
     return await this.usuarioRepository.delete(id);
   }

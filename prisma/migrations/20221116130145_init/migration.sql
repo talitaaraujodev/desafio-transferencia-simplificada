@@ -82,16 +82,16 @@ CREATE TABLE `transferencias` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- AddForeignKey
-ALTER TABLE `permissions_roles` ADD CONSTRAINT `permissions_roles_role_id_fkey` FOREIGN KEY (`role_id`) REFERENCES `roles`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `permissions_roles` ADD CONSTRAINT `permissions_roles_role_id_fkey` FOREIGN KEY (`role_id`) REFERENCES `roles`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `permissions_roles` ADD CONSTRAINT `permissions_roles_permission_id_fkey` FOREIGN KEY (`permission_id`) REFERENCES `permissions`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `permissions_roles` ADD CONSTRAINT `permissions_roles_permission_id_fkey` FOREIGN KEY (`permission_id`) REFERENCES `permissions`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `usuarios_roles` ADD CONSTRAINT `usuarios_roles_usuario_id_fkey` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `usuarios_roles` ADD CONSTRAINT `usuarios_roles_usuario_id_fkey` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `usuarios_roles` ADD CONSTRAINT `usuarios_roles_role_id_fkey` FOREIGN KEY (`role_id`) REFERENCES `roles`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `usuarios_roles` ADD CONSTRAINT `usuarios_roles_role_id_fkey` FOREIGN KEY (`role_id`) REFERENCES `roles`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `carteiras` ADD CONSTRAINT `carteiras_tipo_id_fkey` FOREIGN KEY (`tipo_id`) REFERENCES `tipos_carteira`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -100,10 +100,10 @@ ALTER TABLE `carteiras` ADD CONSTRAINT `carteiras_tipo_id_fkey` FOREIGN KEY (`ti
 ALTER TABLE `transferencias` ADD CONSTRAINT `transferencias_carteira_origem_fkey` FOREIGN KEY (`carteira_origem`) REFERENCES `carteiras`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `transferencias` ADD CONSTRAINT `transferencias_carteira_destinatario_fkey` FOREIGN KEY (`carteira_destinatario`) REFERENCES `carteiras`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `transferencias` ADD CONSTRAINT `transferencias_carteira_destinatario_fkey` FOREIGN KEY (`carteira_destinatario`) REFERENCES `carteiras`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `transferencias` ADD CONSTRAINT `transferencias_usuario_origem_fkey` FOREIGN KEY (`usuario_origem`) REFERENCES `usuarios`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `transferencias` ADD CONSTRAINT `transferencias_usuario_origem_fkey` FOREIGN KEY (`usuario_origem`) REFERENCES `usuarios`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `transferencias` ADD CONSTRAINT `transferencias_usuario_destinatario_fkey` FOREIGN KEY (`usuario_destinatario`) REFERENCES `usuarios`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `transferencias` ADD CONSTRAINT `transferencias_usuario_destinatario_fkey` FOREIGN KEY (`usuario_destinatario`) REFERENCES `usuarios`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;

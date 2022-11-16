@@ -43,8 +43,8 @@ model PermissionsRoles {
   id            Int         @id @default(autoincrement())
   role_id       Int
   permission_id Int
-  roles         Roles       @relation(fields: [role_id], references: [id])
-  Permissions   Permissions @relation(fields: [permission_id], references: [id])
+  roles         Roles       @relation(fields: [role_id], references: [id],  onDelete: Cascade)
+  Permissions   Permissions @relation(fields: [permission_id], references: [id],  onDelete: Cascade)
 
   @@map("permissions_roles")
 }
@@ -53,8 +53,8 @@ model UsuariosRoles {
   id         Int      @id @default(autoincrement())
   usuario_id Int
   role_id    Int
-  Usuarios   Usuarios @relation(fields: [usuario_id], references: [id])
-  Roles      Roles    @relation(fields: [role_id], references: [id])
+  Usuarios   Usuarios @relation(fields: [usuario_id], references: [id],  onDelete: Cascade)
+  Roles      Roles    @relation(fields: [role_id], references: [id],  onDelete: Cascade)
 
   @@map("usuarios_roles")
 }
@@ -89,9 +89,9 @@ model Transferencias {
   usuario_origem                       Int
   usuario_destinatario                 Int
   transferencias_carteira_origem       Carteiras            @relation("transferencias_carteira_origem", fields: [carteira_origem], references: [id])
-  transferencias_carteira_destinatario Carteiras            @relation("transferencias_carteira_destinatario", fields: [carteira_destinatario], references: [id])
-  transferencias_usuario_origem        Usuarios             @relation("transferencias_usuario_origem", fields: [usuario_origem], references: [id])
-  transferencias_usuario_destinatario  Usuarios             @relation("transferencias_usuario_destinatario", fields: [usuario_destinatario], references: [id])
+  transferencias_carteira_destinatario Carteiras            @relation("transferencias_carteira_destinatario", fields: [carteira_destinatario], references: [id],  onDelete: Cascade)
+  transferencias_usuario_origem        Usuarios             @relation("transferencias_usuario_origem", fields: [usuario_origem], references: [id], onDelete: Cascade)
+  transferencias_usuario_destinatario  Usuarios             @relation("transferencias_usuario_destinatario", fields: [usuario_destinatario], references: [id],  onDelete: Cascade)
 
   @@map("transferencias")
 }
