@@ -4,22 +4,22 @@ import {
   HttpStatus,
   HttpException,
   ForbiddenException,
+  Type,
+  mixin,
 } from '@nestjs/common';
 import { NextFunction, Request, Response } from 'express';
 import { decode } from 'jsonwebtoken';
 import { UsuarioService } from '../services/usuario/usuario.service';
 
-@Injectable()
-export class PermissionMiddleware implements NestMiddleware {
-  constructor(private readonly usuarioService: UsuarioService) {}
-
-  use(role: string[]) {
-    const roleAuthorized = async (
-      request: Request,
-      response: Response,
-      next: NextFunction,
-    ) => {
-      const authHeader = request.headers.authorization || '';
+export function PermissionMiddlewareCreator(
+  roles: string[],
+): Type<NestMiddleware> {
+  console.log(roles);
+  @Injectable()
+  class PermissionMiddleware implements NestMiddleware {
+    constructor(private readonly usuarioService: UsuarioService) {}
+    async use(req: Request, res: Response, next: NextFunction) {
+      const authHeader = req.headers.authorization || '';
 
       const [, token] = authHeader?.split(' ');
 
@@ -27,19 +27,15 @@ export class PermissionMiddleware implements NestMiddleware {
       const user: any = await this.usuarioService.findOne(
         Number(payload?.subject?.sub),
       );
-      if (!user) {
-        throw new HttpException('Usuário não existe', HttpStatus.FORBIDDEN);
-      }
-      const userRoles = user.UsuariosRoles.map(
-        (role: any) => role.roleUsuario.nome,
-      );
 
-      const existsRoles = userRoles?.some((r: any) => role.includes(r));
+      const userRoles = user.UsuariosRoles.map((role: any) => role.Roles.name);
+
+      const existsRoles = userRoles?.some((r: any) => roles.includes(r));
       if (existsRoles) {
         return next();
       }
       throw new ForbiddenException();
-    };
-    return roleAuthorized;
+    }
   }
+  return mixin(PermissionMiddleware);
 }

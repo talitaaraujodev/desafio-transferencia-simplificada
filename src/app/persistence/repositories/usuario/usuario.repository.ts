@@ -22,7 +22,7 @@ export class UsuarioRepository {
   async findOne(id: number): Promise<Usuario> {
     return await this.prisma.usuarios.findUnique({
       where: { id },
-      include: { UsuariosRoles: true },
+      include: { UsuariosRoles: { include: { Roles: true } } },
     });
   }
   async findByEmail(email: string): Promise<Usuario> {

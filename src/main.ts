@@ -15,6 +15,15 @@ async function bootstrap() {
     .setTitle('Transferência Simplificada API')
     .setDescription('Desafio Paguru Transferencia Simplificada.')
     .setVersion('1.0.0')
+    .addBearerAuth(
+      {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+        name: 'JWT',
+      },
+      'access-token',
+    )
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

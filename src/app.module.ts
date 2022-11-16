@@ -1,4 +1,4 @@
-import { PermissionMiddleware } from './app/middlewares/permission.middleware';
+import { PermissionMiddlewareCreator } from './app/middlewares/permission.middleware';
 import {
   MiddlewareConsumer,
   Module,
@@ -11,8 +11,6 @@ import { PermissionModule } from './app/modules/permission.module';
 import { PrismaModule } from './app/database/prisma.module';
 import { AuthModule } from './app/modules/auth.module';
 import { AuthMiddleware } from './app/middlewares/auth.middleware';
-import { AuthController } from './auth/auth.controller';
-import { AuthService } from './auth/auth.service';
 
 @Module({
   imports: [
@@ -22,8 +20,6 @@ import { AuthService } from './auth/auth.service';
     UsuarioModule,
     AuthModule,
   ],
-  controllers: [AuthController],
-  providers: [AuthService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
@@ -38,12 +34,12 @@ export class AppModule implements NestModule {
         { path: 'roles', method: RequestMethod.ALL },
         { path: 'permissions', method: RequestMethod.ALL },
       );
-    // consumer
-    //   .apply(PermissionMiddleware['ROLE_LOJISTA'])
-    //   .forRoutes(
-    //     { path: 'usuarios', method: RequestMethod.ALL },
-    //     { path: 'roles', method: RequestMethod.ALL },
-    //     { path: 'permissions', method: RequestMethod.ALL },
-    //   );
+    consumer
+      .apply(PermissionMiddlewareCreator(['ROLE_LOJISTA']))
+      .forRoutes(
+        { path: 'usuarios', method: RequestMethod.ALL },
+        { path: 'roles', method: RequestMethod.ALL },
+        { path: 'permissions', method: RequestMethod.ALL },
+      );
   }
 }
