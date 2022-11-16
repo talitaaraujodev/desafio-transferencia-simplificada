@@ -61,7 +61,7 @@ CREATE TABLE `tipos_carteira` (
 -- CreateTable
 CREATE TABLE `carteiras` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `saldo` DECIMAL(10, 2) NOT NULL,
+    `saldo` DOUBLE NOT NULL DEFAULT 0.00,
     `usuario_id` INTEGER NOT NULL,
     `tipo_id` INTEGER NOT NULL,
 
@@ -71,7 +71,7 @@ CREATE TABLE `carteiras` (
 -- CreateTable
 CREATE TABLE `transferencias` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `value` DECIMAL(10, 2) NOT NULL,
+    `value` DOUBLE NOT NULL,
     `status` ENUM('Pendente', 'Finalizado') NOT NULL DEFAULT 'Pendente',
     `carteira_origem` INTEGER NOT NULL,
     `carteira_destinatario` INTEGER NOT NULL,
