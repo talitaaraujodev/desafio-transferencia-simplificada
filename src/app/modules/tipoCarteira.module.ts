@@ -7,6 +7,6 @@ import { PrismaService } from '../database/prisma.service';
 @Module({
   controllers: [TipoCarteiraController],
   providers: [TipoCarteiraService, TipoCarteiraRepository, PrismaService],
-  exports: [TipoCarteiraRepository],
+  exports: [TipoCarteiraService, TipoCarteiraRepository],
 })
 export class TipoCarteiraModule {}

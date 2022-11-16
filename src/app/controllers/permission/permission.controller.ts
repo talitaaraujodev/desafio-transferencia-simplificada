@@ -7,6 +7,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { Permission } from './../../persistence/entities/permission.entity';
 import { PermissionService } from '../../services/permission/permission.service';
 import { CreatePermissionDto } from '../../persistence/dto/createPermission.dto';
 
@@ -17,13 +18,13 @@ export class PermissionController {
 
   @Get()
   @ApiOperation({ summary: 'Listar todas as permissions' })
-  async findAll() {
-    return this.permissionService.findAll();
+  async findAll(): Promise<Permission[]> {
+    return await this.permissionService.findAll();
   }
   @Post()
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Adicionar uma nova permissão' })
-  async create(@Body() body: CreatePermissionDto) {
-    return this.permissionService.create(body);
+  async create(@Body() body: CreatePermissionDto): Promise<Permission> {
+    return await this.permissionService.create(body);
   }
 }

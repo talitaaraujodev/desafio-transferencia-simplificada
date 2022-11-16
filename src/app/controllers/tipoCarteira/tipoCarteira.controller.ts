@@ -1,3 +1,4 @@
+import { TipoCarteira } from './../../persistence/entities/tipoCarteira.entity';
 import {
   Body,
   Controller,
@@ -15,13 +16,13 @@ export class TipoCarteiraController {
   constructor(private readonly tipoCarteiraService: TipoCarteiraService) {}
   @Get()
   @ApiOperation({ summary: 'Listar todas os tipos de carteira' })
-  async findAll() {
+  async findAll(): Promise<TipoCarteira[]> {
     return await this.tipoCarteiraService.findAll();
   }
   @Post()
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Adicionar uma novo tipo de carteira' })
-  async create(@Body() body: CreateTipoCarteiraDto) {
+  async create(@Body() body: CreateTipoCarteiraDto): Promise<TipoCarteira> {
     return await this.tipoCarteiraService.create(body);
   }
 }

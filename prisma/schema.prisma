@@ -70,7 +70,7 @@ model TipoCarteira {
 
 model Carteiras {
   id                                   Int              @id @default(autoincrement())
-  saldo                                Decimal          @db.Decimal(10, 2)
+  saldo                                Float            @default(0.00)
   usuario_id                           Int
   tipo_id                              Int
   TipoCarteira                         TipoCarteira     @relation(fields: [tipo_id], references: [id])
@@ -82,7 +82,7 @@ model Carteiras {
 
 model Transferencias {
   id                                   Int                  @id @default(autoincrement())
-  value                                Decimal              @db.Decimal(10, 2)
+  value                                Float
   status                               TransferenciasStatus @default(Pendente)
   carteira_origem                      Int
   carteira_destinatario                Int

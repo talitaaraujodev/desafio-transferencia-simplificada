@@ -1,3 +1,4 @@
+import { Role } from './../../persistence/entities/role.entity';
 import {
   Body,
   Controller,
@@ -17,13 +18,13 @@ export class RoleController {
 
   @Get()
   @ApiOperation({ summary: 'Listar todas as roles' })
-  async findAll() {
+  async findAll(): Promise<Role[]> {
     return await this.roleService.findAll();
   }
   @Post()
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Adicionar uma nova role' })
-  async create(@Body() body: CreateRolePermissionDto) {
+  async create(@Body() body: CreateRolePermissionDto): Promise<Role> {
     return await this.roleService.create(body);
   }
 }
