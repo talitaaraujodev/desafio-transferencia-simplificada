@@ -17,7 +17,6 @@ export class AuthMiddleware implements NestMiddleware {
     try {
       const authHeader = req.headers.authorization || '';
       const [bearer, token] = authHeader.split(' ');
-      console.log('Request Received');
 
       if (!authHeader) {
         throw new HttpException(

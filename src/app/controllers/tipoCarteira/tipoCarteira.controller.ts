@@ -7,11 +7,13 @@ import {
   HttpStatus,
   Post,
 } from '@nestjs/common';
-import { ApiOperation } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { TipoCarteiraService } from '../../services/tipoCarteira/tipoCarteira.service';
 import { CreateTipoCarteiraDto } from './../../persistence/dto/createTipoCarteira.dto';
 
 @Controller({ path: 'tipoCarteira' })
+@ApiTags('Tipos de Carteira')
+@ApiBearerAuth('access-token')
 export class TipoCarteiraController {
   constructor(private readonly tipoCarteiraService: TipoCarteiraService) {}
   @Get()
