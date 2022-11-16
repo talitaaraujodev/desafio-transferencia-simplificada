@@ -1,4 +1,4 @@
-export class Permission {
+export class TipoCarteira {
   id?: number;
   name: string;
   descricao: string;

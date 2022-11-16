@@ -1,9 +1,12 @@
+import { Module } from '@nestjs/common';
+import { TipoCarteiraRepository } from './../persistence/repositories/tipoCarteira/tipoCarteira.repository';
 import { TipoCarteiraService } from '../services/tipoCarteira/tipoCarteira.service';
 import { TipoCarteiraController } from '../controllers/tipoCarteira/tipoCarteira.controller';
-import { Module } from '@nestjs/common';
+import { PrismaService } from '../database/prisma.service';
 
 @Module({
   controllers: [TipoCarteiraController],
-  providers: [TipoCarteiraService],
+  providers: [TipoCarteiraService, TipoCarteiraRepository, PrismaService],
+  exports: [TipoCarteiraRepository],
 })
 export class TipoCarteiraModule {}
