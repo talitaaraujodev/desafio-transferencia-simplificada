@@ -11,6 +11,8 @@ import { PermissionModule } from './app/modules/permission.module';
 import { PrismaModule } from './app/database/prisma.module';
 import { AuthModule } from './app/modules/auth.module';
 import { AuthMiddleware } from './app/middlewares/auth.middleware';
+import { CarteiraController } from './app/controllers/carteira/carteira.controller';
+import { CarteiraService } from './app/services/carteira/carteira.service';
 
 @Module({
   imports: [
@@ -20,6 +22,8 @@ import { AuthMiddleware } from './app/middlewares/auth.middleware';
     UsuarioModule,
     AuthModule,
   ],
+  controllers: [CarteiraController],
+  providers: [CarteiraService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

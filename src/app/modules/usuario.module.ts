@@ -1,5 +1,5 @@
 import { PermissionRoleRepository } from './../persistence/repositories/permissionRole/permissionRole.repository';
-import { RoleRepository } from './../persistence/repositories/role/RoleRepository';
+import { RoleRepository } from '../persistence/repositories/role/role.repository';
 import { PermissionRepository } from './../persistence/repositories/permission/permission.repository';
 import { RoleService } from './../services/role/role.service';
 import { Module } from '@nestjs/common';
