@@ -1,4 +1,4 @@
 import { Controller } from '@nestjs/common';
 
-@Controller('carteira')
+@Controller({ path: 'carteira' })
 export class CarteiraController {}
