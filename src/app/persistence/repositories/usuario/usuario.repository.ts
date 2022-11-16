@@ -20,7 +20,10 @@ export class UsuarioRepository {
     return await this.prisma.usuarios.findMany();
   }
   async findOne(id: number): Promise<Usuario> {
-    return await this.prisma.usuarios.findUnique({ where: { id } });
+    return await this.prisma.usuarios.findUnique({
+      where: { id },
+      include: { UsuariosRoles: true },
+    });
   }
   async findByEmail(email: string): Promise<Usuario> {
     return await this.prisma.usuarios.findUnique({ where: { email } });

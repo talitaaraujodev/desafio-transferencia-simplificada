@@ -1,4 +1,3 @@
-import { CreateUsuarioRoleDto } from './../../persistence/dto/createUsuarioRole.dto';
 import {
   Body,
   Controller,
@@ -10,6 +9,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { CreateUsuarioRoleDto } from './../../persistence/dto/createUsuarioRole.dto';
 import { UsuarioService } from '../../services/usuario/usuario.service';
 
 @Controller({ path: 'usuarios' })
