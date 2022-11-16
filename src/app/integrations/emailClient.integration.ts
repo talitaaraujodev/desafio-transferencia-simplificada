@@ -7,6 +7,6 @@ export class EmailClient {
     private readonly emailClienteIntegrationImp: EmailClienteIntegrationImp,
   ) {}
   async notifyEmail() {
-    return this.emailClienteIntegrationImp.notifyEmail();
+    return this.emailClienteIntegrationImp.notify();
   }
 }
