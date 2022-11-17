@@ -16,7 +16,7 @@ import { CreateWalletDto } from '../dto/CreateWalletDto';
 import { Wallet } from '../persistence/entities/WalletEntity';
 import { WalletService } from '../services/WalletService';
 
-@Controller({ path: 'carteiras' })
+@Controller({ path: 'wallet' })
 @ApiTags('Carteiras')
 @ApiBearerAuth('access-token')
 export class WalletController {

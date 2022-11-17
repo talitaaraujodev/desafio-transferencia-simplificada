@@ -11,7 +11,7 @@ import { Permission } from '../persistence/entities/PermissionEntity';
 import { PermissionService } from '../services/PermissionService';
 import { CreatePermissionDto } from '../dto/CreatePermissionDto';
 
-@Controller({ path: 'permissions' })
+@Controller({ path: 'permission' })
 @ApiTags('Permissions')
 export class PermissionController {
   constructor(private readonly permissionService: PermissionService) {}

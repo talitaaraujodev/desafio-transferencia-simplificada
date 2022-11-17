@@ -14,7 +14,7 @@ import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CreateUserRoleDto } from '../dto/CreateUserRoleDto';
 import { UserService } from '../services/UserService';
 
-@Controller({ path: 'usuarios' })
+@Controller({ path: 'user' })
 @ApiTags('Usuarios')
 export class UserController {
   constructor(private readonly userService: UserService) {}

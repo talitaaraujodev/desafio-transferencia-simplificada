@@ -11,7 +11,7 @@ import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { WalletTypeService } from '../services/WalletTypeService';
 import { CreateWalletTypeDto } from '../dto/CreateWalletTypeDto';
 
-@Controller({ path: 'tipoCarteira' })
+@Controller({ path: 'walletType' })
 @ApiTags('Tipos de Carteira')
 @ApiBearerAuth('access-token')
 export class WalletTypeController {

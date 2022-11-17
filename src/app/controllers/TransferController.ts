@@ -4,7 +4,7 @@ import { Controller, HttpCode, HttpStatus, Body, Post } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags, ApiOperation } from '@nestjs/swagger';
 import { TransferService } from '../services/TranferService';
 
-@Controller('transferencias')
+@Controller('transfer')
 @ApiTags('Transferencias')
 @ApiBearerAuth('access-token')
 export class TransferController {
