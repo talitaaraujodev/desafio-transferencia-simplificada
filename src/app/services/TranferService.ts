@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { AuthorizationTransactionIntegration } from '../integrations/authorizationTransaction.integration';
-import { EmailClientIntegration } from '../integrations/emailClient.integration';
+import { EmailClient } from './../integrations/EmailClient';
+import { AuthorizationTransactionClient } from './../integrations/AuthorizationTransactionClient';
 import { CreateTransferDto } from '../dto/CreateTranferDto';
 import { UserService } from './UserService';
 import { Transfer } from '../persistence/entities/TransferEntity';
@@ -12,8 +12,10 @@ export class TransferService {
   constructor(
     private readonly walletService: WalletService,
     private readonly userService: UserService,
-    private readonly emailClientIntegration: EmailClientIntegration,
-    private readonly authorizationTransactionIntegration: AuthorizationTransactionIntegration,
+    @Inject('EmailClient')
+    private readonly emailClient: EmailClient,
+    @Inject('AuthorizationTransactionClient')
+    private readonly authorizationTransactionClient: AuthorizationTransactionClient,
     @Inject('TransferRepository')
     private readonly transferRepository: TransferRepository,
   ) {}
@@ -27,8 +29,8 @@ export class TransferService {
 
     const transfer = await this.transferRepository.create(data);
     const verifyAuthorization =
-      await this.authorizationTransactionIntegration.authorization();
-    const sendEmail = await this.emailClientIntegration.notifyEmail();
+      await this.authorizationTransactionClient.authorization();
+    const sendEmail = await this.emailClient.notifyEmail();
 
     const updateCarteiraOrigem = await this.walletService.decreaseSaldo(
       data.carteira_origem,

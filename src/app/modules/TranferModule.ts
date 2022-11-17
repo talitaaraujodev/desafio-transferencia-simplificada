@@ -1,7 +1,6 @@
-import { EmailClienteIntegrationImp } from '../integrations/implementations/emailCliente.integration.imp';
-import { AuthorizationIntegrationImp } from '../integrations/implementations/authorizationTransaction.integration.imp';
-import { AuthorizationTransactionIntegration } from '../integrations/authorizationTransaction.integration';
-import { EmailClientIntegration } from '../integrations/emailClient.integration';
+import { Module } from '@nestjs/common';
+import { EmailClientImp } from './../integrations/implementations/EmailClientImp';
+import { AuthorizationTransactionClientImp } from '../integrations/implementations/AuthorizationTransactionClientImp';
 import { WalletTypeRepositoryImp } from '../persistence/repositories/implementations/WalletTypeRepositoryImp';
 import { WalletTypeService } from '../services/WalletTypeService';
 import { WalletRepositoryImp } from '../persistence/repositories/implementations/WalletRepositoryImp';
@@ -13,7 +12,6 @@ import { UserRoleRepositoryImp } from '../persistence/repositories/implementatio
 import { UserRepositoryImp } from '../persistence/repositories/implementations/UserRepositoryImp';
 import { WalletService } from '../services/WalletService';
 import { TransferRepositoryImp } from '../persistence/repositories/implementations/TransferRepositoryImp';
-import { Module } from '@nestjs/common';
 import { TransferController } from '../controllers/TransferController';
 import { TransferService } from '../services/TranferService';
 import { PrismaService } from '../config/database/PrismaService';
@@ -54,15 +52,19 @@ import { RoleService } from '../services/RoleService';
       provide: 'TransferRepository',
       useClass: TransferRepositoryImp,
     },
+    {
+      provide: 'EmailClient',
+      useClass: EmailClientImp,
+    },
+    {
+      provide: 'AuthorizationTransactionClient',
+      useClass: AuthorizationTransactionClientImp,
+    },
     TransferService,
     UserService,
     WalletService,
     WalletTypeService,
     RoleService,
-    EmailClientIntegration,
-    EmailClienteIntegrationImp,
-    AuthorizationTransactionIntegration,
-    AuthorizationIntegrationImp,
     PrismaService,
   ],
   exports: [TransferService],
