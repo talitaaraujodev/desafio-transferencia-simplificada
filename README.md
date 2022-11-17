@@ -1,6 +1,6 @@
 # Desafio Back-end Paguru
 
-Desafio Api de transferencia simplificada entre os usuários
+Desafio transferência simplificada entre os usuários
 
 ## Instalação
 
@@ -40,23 +40,25 @@ Exemplo:
 }
 ```
 
-### Cadastre as roles:
+### Cadastre os dois tipos de roles:
 
-Criar roles do usuário
+Criar roles do usuário (ROLE_LOJISTA, ROLE_COMUM)
 <br>
+
 #### Exemplo:
 
 ```json
 {
-  "name": "ROLE_ADMIN",
-  "descricao": "Role de Admin",
+  "name": "ROLE_COMUM",
+  "descricao": "Role de usuário Comum",
   "permissions": [1, 2, 3]
 }
 ```
 
-### Crie 2 usuários p/ fazer a transferencia:
+### Crie 2 usuários p/ fazer a transferência:
 
 Criar um usuário
+
 #### Exemplo:
 
 ```json
@@ -72,6 +74,7 @@ Criar um usuário
 ### Faça a autenticação:
 
 Authenticação do usuário
+
 #### Exemplo:
 
 ```json
@@ -84,6 +87,7 @@ Authenticação do usuário
 ### Crie os tipos de carteira:
 
 Criar tipos de carteira
+
 #### Exemplo:
 
 ```json
@@ -96,6 +100,7 @@ Criar tipos de carteira
 ### Crie 2 carteiras p/ os usuarios cadastrados:
 
 Criar carteira
+
 #### Exemplo:
 
 ```json
@@ -108,6 +113,7 @@ Criar carteira
 ### Crie uma transferencia:
 
 Criar transferencia
+
 #### Exemplo:
 
 ```json
