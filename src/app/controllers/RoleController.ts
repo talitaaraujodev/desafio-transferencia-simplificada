@@ -7,7 +7,7 @@ import {
   HttpStatus,
   Post,
 } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiTags, ApiResponse } from '@nestjs/swagger';
 import { CreateRolePermissionDto } from '../dto/CreateRolePermissionDto';
 import { RoleService } from '../services/RoleService';
 
@@ -16,6 +16,12 @@ import { RoleService } from '../services/RoleService';
 export class RoleController {
   constructor(private readonly roleService: RoleService) {}
 
+  @ApiResponse({
+    status: 200,
+    description: 'Lista de roles retornada com sucesso',
+    type: Role,
+    isArray: true,
+  })
   @Get()
   @ApiOperation({ summary: 'Listar todas as roles' })
   async findAll(): Promise<Role[]> {

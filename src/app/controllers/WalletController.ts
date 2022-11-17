@@ -10,7 +10,12 @@ import {
   HttpCode,
   Body,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiOperation,
+  ApiTags,
+  ApiResponse,
+} from '@nestjs/swagger';
 import { UpdateWalletDto } from '../dto/UpdateWalletDto';
 import { CreateWalletDto } from '../dto/CreateWalletDto';
 import { Wallet } from '../persistence/entities/WalletEntity';
@@ -24,6 +29,12 @@ export class WalletController {
 
   @Get()
   @ApiOperation({ summary: 'Listar todas as carteiras' })
+  @ApiResponse({
+    status: 200,
+    description: 'Lista de carteiras retornada com sucesso',
+    type: Wallet,
+    isArray: true,
+  })
   async findAll(): Promise<Wallet[]> {
     return await this.walletService.findAll();
   }

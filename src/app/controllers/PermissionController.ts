@@ -6,7 +6,7 @@ import {
   HttpStatus,
   Post,
 } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiTags, ApiResponse } from '@nestjs/swagger';
 import { Permission } from '../persistence/entities/PermissionEntity';
 import { PermissionService } from '../services/PermissionService';
 import { CreatePermissionDto } from '../dto/CreatePermissionDto';
@@ -18,6 +18,12 @@ export class PermissionController {
 
   @Get()
   @ApiOperation({ summary: 'Listar todas as permissions' })
+  @ApiResponse({
+    status: 200,
+    description: 'Lista de permission retornada com sucesso',
+    type: Permission,
+    isArray: true,
+  })
   async findAll(): Promise<Permission[]> {
     return await this.permissionService.findAll();
   }

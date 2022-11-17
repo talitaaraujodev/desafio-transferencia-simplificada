@@ -1,3 +1,9 @@
+import {
+  ApiBearerAuth,
+  ApiOperation,
+  ApiTags,
+  ApiResponse,
+} from '@nestjs/swagger';
 import { User } from '../persistence/entities/UserEntity';
 import {
   Body,
@@ -10,7 +16,6 @@ import {
   Post,
   ParseIntPipe,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CreateUserRoleDto } from '../dto/CreateUserRoleDto';
 import { UserService } from '../services/UserService';
 
@@ -21,6 +26,12 @@ export class UserController {
   @ApiBearerAuth('access-token')
   @Get()
   @ApiOperation({ summary: 'Listar todas os usuários' })
+  @ApiResponse({
+    status: 200,
+    description: 'Lista de usuarios retornada com sucesso',
+    type: User,
+    isArray: true,
+  })
   async findAll(): Promise<User[]> {
     return await this.userService.findAll();
   }

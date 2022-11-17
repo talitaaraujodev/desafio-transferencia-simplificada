@@ -7,7 +7,12 @@ import {
   HttpStatus,
   Post,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { WalletTypeService } from '../services/WalletTypeService';
 import { CreateWalletTypeDto } from '../dto/CreateWalletTypeDto';
 
@@ -18,6 +23,12 @@ export class WalletTypeController {
   constructor(private readonly walletTypeService: WalletTypeService) {}
   @Get()
   @ApiOperation({ summary: 'Listar todas os tipos de carteira' })
+  @ApiResponse({
+    status: 200,
+    description: 'Lista de tipos de carteira retornada com sucesso',
+    type: WalletType,
+    isArray: true,
+  })
   async findAll(): Promise<WalletType[]> {
     return await this.walletTypeService.findAll();
   }
