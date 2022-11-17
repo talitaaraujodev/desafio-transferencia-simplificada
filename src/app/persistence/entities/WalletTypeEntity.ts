@@ -1,4 +1,4 @@
-export class TipoCarteira {
+export class WalletType {
   id?: number;
   name: string;
   descricao: string;

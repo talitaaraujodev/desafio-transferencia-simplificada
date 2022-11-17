@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { TipoCarteira } from '../../entities/tipoCarteira.entity';
+import { WalletType } from '../../entities/WalletTypeEntity';
 import { PrismaService } from '../../../config/database/PrismaService';
 
 @Injectable()
 export class TipoCarteiraRepository {
   constructor(private prisma: PrismaService) {}
-  async create(entity: TipoCarteira): Promise<TipoCarteira> {
+  async create(entity: WalletType): Promise<WalletType> {
     return await this.prisma.tipoCarteira.create({
       data: {
         name: entity.name,
@@ -13,10 +13,10 @@ export class TipoCarteiraRepository {
       },
     });
   }
-  async findAll(): Promise<TipoCarteira[]> {
+  async findAll(): Promise<WalletType[]> {
     return await this.prisma.tipoCarteira.findMany();
   }
-  async findOne(id: number): Promise<TipoCarteira> {
+  async findOne(id: number): Promise<WalletType> {
     return await this.prisma.permissions.findUnique({
       where: {
         id,

@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CreatePermissionDto } from '../../src/app/dto/CreatePermissionDto';
 import { PermissionService } from '../../src/app/services/PermissionService';
-import { Permission } from '../../src/app/persistence/entities/permission.entity';
+import { Permission } from '../../src/app/persistence/entities/PermissionEntity';
 import { PermissionController } from '../../src/app/controllers/PermissionController';
 
 const mockSut = () => {

@@ -1,4 +1,4 @@
-export class Usuario {
+export class User {
   id?: number;
   name: string;
   cpf_cnpj: string;

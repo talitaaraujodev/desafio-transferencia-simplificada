@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { PrismaService } from '../../../config/database/PrismaService';
-import { Usuario } from '../../entities/usuario.entity';
+import { User } from '../../entities/UserEntity';
 
 @Injectable()
 export class UsuarioRepository {
   constructor(private readonly prisma: PrismaService) {}
-  async create(entity: Usuario): Promise<Usuario> {
+  async create(entity: User): Promise<User> {
     return await this.prisma.usuarios.create({
       data: {
         name: entity.name,
@@ -16,30 +16,30 @@ export class UsuarioRepository {
       },
     });
   }
-  async findAll(): Promise<Usuario[]> {
+  async findAll(): Promise<User[]> {
     return await this.prisma.usuarios.findMany();
   }
-  async findOne(id: number): Promise<Usuario> {
+  async findOne(id: number): Promise<User> {
     return await this.prisma.usuarios.findUnique({
       where: { id },
       include: { UsuariosRoles: { include: { Roles: true } } },
     });
   }
-  async findByEmail(email: string): Promise<Usuario> {
+  async findByEmail(email: string): Promise<User> {
     return await this.prisma.usuarios.findUnique({ where: { email } });
   }
-  async findByCpfCnpj(cpf_cnpj: string): Promise<Usuario> {
+  async findByCpfCnpj(cpf_cnpj: string): Promise<User> {
     return await this.prisma.usuarios.findUnique({ where: { cpf_cnpj } });
   }
 
-  async findByLastId(): Promise<Usuario> {
+  async findByLastId(): Promise<User> {
     return await this.prisma.usuarios.findFirst({
       orderBy: { id: 'desc' },
       take: 1,
     });
   }
 
-  async delete(id: number): Promise<Usuario> {
+  async delete(id: number): Promise<User> {
     return await this.prisma.usuarios.delete({ where: { id } });
   }
 }

@@ -1,4 +1,4 @@
-import { Usuario } from '../persistence/entities/usuario.entity';
+import { User } from '../persistence/entities/UserEntity';
 import {
   Body,
   Controller,
@@ -21,13 +21,13 @@ export class UserController {
   @ApiBearerAuth('access-token')
   @Get()
   @ApiOperation({ summary: 'Listar todas os usuários' })
-  async findAll(): Promise<Usuario[]> {
+  async findAll(): Promise<User[]> {
     return await this.userService.findAll();
   }
   @Post()
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Adicionar uma novo usuário' })
-  async create(@Body() body: CreateUserRoleDto): Promise<Usuario> {
+  async create(@Body() body: CreateUserRoleDto): Promise<User> {
     return await this.userService.create(body);
   }
   @ApiBearerAuth('access-token')
@@ -39,7 +39,7 @@ export class UserController {
       new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
     )
     id: number,
-  ): Promise<Usuario> {
+  ): Promise<User> {
     return await this.userService.findOne(id);
   }
   @ApiBearerAuth('access-token')
@@ -51,7 +51,7 @@ export class UserController {
       new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
     )
     id: number,
-  ): Promise<Usuario> {
+  ): Promise<User> {
     return await this.userService.delete(id);
   }
 }

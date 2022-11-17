@@ -1,4 +1,4 @@
-import { Transferencia } from '../persistence/entities/transferencia.entity';
+import { Transfer } from '../persistence/entities/TransferEntity';
 import { CreateTransferDto } from '../dto/CreateTranferDto';
 import { Controller, HttpCode, HttpStatus, Body, Post } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags, ApiOperation } from '@nestjs/swagger';
@@ -13,7 +13,7 @@ export class TransferController {
   @Post()
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Adicionar uma nova tranferencia' })
-  async create(@Body() body: CreateTransferDto): Promise<Transferencia> {
+  async create(@Body() body: CreateTransferDto): Promise<Transfer> {
     return await this.transferService.create(body);
   }
 }

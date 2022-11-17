@@ -1,4 +1,4 @@
-import { Role } from '../persistence/entities/role.entity';
+import { Role } from '../persistence/entities/RoleEntity';
 import {
   Body,
   Controller,

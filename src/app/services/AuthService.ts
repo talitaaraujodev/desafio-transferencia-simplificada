@@ -5,7 +5,7 @@ import { UsuarioRepository } from '../persistence/repositories/usuario/usuario.r
 import { PayloadDto } from '../dto/PayloadDto';
 import { LoginDto } from '../dto/LoginDto';
 import { TokenDto } from '../dto/TokenDto';
-import { Usuario } from '../persistence/entities/usuario.entity';
+import { User } from '../persistence/entities/UserEntity';
 import env from '../config/env';
 
 @Injectable()
@@ -30,7 +30,7 @@ export class AuthService {
       ),
     };
   }
-  async validateCredentials(data: LoginDto): Promise<Usuario> {
+  async validateCredentials(data: LoginDto): Promise<User> {
     const usuario = await this.usuarioRepository.findByEmail(data.email);
 
     if (usuario) {

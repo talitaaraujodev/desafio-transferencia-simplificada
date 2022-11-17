@@ -3,7 +3,7 @@ import { AuthorizationTransactionIntegration } from '../persistence/integrations
 import { EmailClientIntegration } from '../persistence/integrations/emailClient.integration';
 import { CreateTransferDto } from '../dto/CreateTranferDto';
 import { UserService } from './UserService';
-import { Transferencia } from '../persistence/entities/transferencia.entity';
+import { Transfer } from '../persistence/entities/TransferEntity';
 import { TransferenciaRepository } from '../persistence/repositories/transferencia/transferencia.repository';
 import { WalletService } from './WalletService';
 
@@ -17,7 +17,7 @@ export class TransferService {
     private readonly authorizationTransactionIntegration: AuthorizationTransactionIntegration,
   ) {}
 
-  async create(data: CreateTransferDto): Promise<Transferencia> {
+  async create(data: CreateTransferDto): Promise<Transfer> {
     await this.walletService.findOne(data.carteira_origem);
     await this.walletService.findOne(data.carteira_destinatario);
     await this.userService.findOne(data.usuario_origem);
@@ -48,7 +48,7 @@ export class TransferService {
       sendEmail,
     ])
       .then(() => {
-        const transferencia: Transferencia = {
+        const transferencia: Transfer = {
           value: data.value,
           status: 'Finalizado',
           carteira_origem: data.carteira_origem,

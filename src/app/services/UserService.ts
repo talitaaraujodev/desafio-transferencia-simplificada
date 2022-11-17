@@ -3,7 +3,7 @@ import { RoleService } from './RoleService';
 import { CreateUserRoleDto } from '../dto/CreateUserRoleDto';
 import { UsuarioRoleRepository } from '../persistence/repositories/usuarioRole/usuarioRole.repository';
 import { UsuarioRepository } from '../persistence/repositories/usuario/usuario.repository';
-import { Usuario } from '../persistence/entities/usuario.entity';
+import { User } from '../persistence/entities/UserEntity';
 import { CreateUserDto } from '../dto/CreateUserDto';
 
 @Injectable()
@@ -13,7 +13,7 @@ export class UserService {
     private readonly roleService: RoleService,
     private readonly userRoleRepository: UsuarioRoleRepository,
   ) {}
-  async create(data: CreateUserRoleDto): Promise<Usuario> {
+  async create(data: CreateUserRoleDto): Promise<User> {
     await this.verifyExistsEmail(data.email);
     await this.verifyExistsCpfCnpj(data.cpf_cnpj);
     await this.roleService.verifyExistsRoles(data.roles);
@@ -45,7 +45,7 @@ export class UserService {
       });
     return result;
   }
-  async verifyExistsEmail(email: string): Promise<Usuario> {
+  async verifyExistsEmail(email: string): Promise<User> {
     const emailExists = await this.userRepository.findByEmail(email);
     if (emailExists) {
       throw new HttpException(
@@ -55,7 +55,7 @@ export class UserService {
     }
     return await this.userRepository.findByEmail(email);
   }
-  async verifyExistsCpfCnpj(cpf_cnpj: string): Promise<Usuario> {
+  async verifyExistsCpfCnpj(cpf_cnpj: string): Promise<User> {
     const cpfCnpjExists = await this.userRepository.findByCpfCnpj(cpf_cnpj);
     if (cpfCnpjExists) {
       throw new HttpException(
@@ -65,10 +65,10 @@ export class UserService {
     }
     return await this.userRepository.findByCpfCnpj(cpf_cnpj);
   }
-  async findAll(): Promise<Usuario[]> {
+  async findAll(): Promise<User[]> {
     return await this.userRepository.findAll();
   }
-  async findOne(id: number): Promise<Usuario> {
+  async findOne(id: number): Promise<User> {
     try {
       const user = await this.userRepository.findOne(id);
       delete user.password;
@@ -80,7 +80,7 @@ export class UserService {
       );
     }
   }
-  async delete(id: number): Promise<Usuario> {
+  async delete(id: number): Promise<User> {
     await this.findOne(id);
     return await this.userRepository.delete(id);
   }

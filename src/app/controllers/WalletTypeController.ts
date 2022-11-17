@@ -1,4 +1,4 @@
-import { TipoCarteira } from '../persistence/entities/tipoCarteira.entity';
+import { WalletType } from '../persistence/entities/WalletTypeEntity';
 import {
   Body,
   Controller,
@@ -18,13 +18,13 @@ export class WalletTypeController {
   constructor(private readonly walletTypeService: WalletTypeService) {}
   @Get()
   @ApiOperation({ summary: 'Listar todas os tipos de carteira' })
-  async findAll(): Promise<TipoCarteira[]> {
+  async findAll(): Promise<WalletType[]> {
     return await this.walletTypeService.findAll();
   }
   @Post()
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Adicionar uma novo tipo de carteira' })
-  async create(@Body() body: CreateWalletTypeDto): Promise<TipoCarteira> {
+  async create(@Body() body: CreateWalletTypeDto): Promise<WalletType> {
     return await this.walletTypeService.create(body);
   }
 }

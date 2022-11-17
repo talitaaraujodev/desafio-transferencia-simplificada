@@ -1,4 +1,4 @@
-export class Transferencia {
+export class Transfer {
   id?: number;
   value: number;
   status?: 'Pendente' | 'Finalizado';

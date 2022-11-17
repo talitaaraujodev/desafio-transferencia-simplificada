@@ -1,7 +1,7 @@
 import { UpdateWalletDto } from '../dto/UpdateWalletDto';
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { WalletTypeService } from './WalletTypeService';
-import { Carteira } from '../persistence/entities/carteira.entity';
+import { Wallet } from '../persistence/entities/WalletEntity';
 import { CreateWalletDto } from '../dto/CreateWalletDto';
 import { CarteiraRepository } from '../persistence/repositories/carteira/carteira.repository';
 import { UserService } from './UserService';
@@ -13,15 +13,15 @@ export class WalletService {
     private readonly userService: UserService,
     private readonly walletTypeService: WalletTypeService,
   ) {}
-  async create(data: CreateWalletDto): Promise<Carteira> {
+  async create(data: CreateWalletDto): Promise<Wallet> {
     await this.userService.findOne(data.usuario_id);
     await this.walletTypeService.findOne(data.tipo_id);
     return await this.walletRepository.create(data);
   }
-  async findAll(): Promise<Carteira[]> {
+  async findAll(): Promise<Wallet[]> {
     return await this.walletRepository.findAll();
   }
-  async findOne(id: number): Promise<Carteira> {
+  async findOne(id: number): Promise<Wallet> {
     try {
       const wallet = await this.walletRepository.findOne(id);
       return wallet;
@@ -32,18 +32,18 @@ export class WalletService {
       );
     }
   }
-  async delete(id: number): Promise<Carteira> {
+  async delete(id: number): Promise<Wallet> {
     await this.findOne(id);
     return await this.walletRepository.delete(id);
   }
-  async update(id: number, data: UpdateWalletDto): Promise<Carteira> {
+  async update(id: number, data: UpdateWalletDto): Promise<Wallet> {
     await this.userService.findOne(data.usuario_id);
     await this.walletTypeService.findOne(data.tipo_id);
     await this.findOne(id);
     return await this.walletRepository.update(id, data);
   }
-  async verifySaldo(id: number, value: number): Promise<Carteira> {
-    const wallet: Carteira = await this.findOne(id);
+  async verifySaldo(id: number, value: number): Promise<Wallet> {
+    const wallet: Wallet = await this.findOne(id);
     if (wallet.saldo < value) {
       throw new HttpException(
         'Saldo para a trasferência insuficiente',
@@ -52,7 +52,7 @@ export class WalletService {
     }
     return wallet;
   }
-  async decreaseSaldo(id: number, value: number): Promise<Carteira> {
+  async decreaseSaldo(id: number, value: number): Promise<Wallet> {
     const wallet = await this.findOne(id);
     const saldoAtual = wallet.saldo - value;
     const data: UpdateWalletDto = {
@@ -63,7 +63,7 @@ export class WalletService {
 
     return await this.update(id, data);
   }
-  async increaseSaldo(id: number, value: number): Promise<Carteira> {
+  async increaseSaldo(id: number, value: number): Promise<Wallet> {
     const wallet = await this.findOne(id);
     const saldoAtual = wallet.saldo + value;
     const data: UpdateWalletDto = {

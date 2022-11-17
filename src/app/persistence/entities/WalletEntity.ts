@@ -1,4 +1,4 @@
-export class Carteira {
+export class Wallet {
   id?: number;
   saldo: any;
   usuario_id: number;

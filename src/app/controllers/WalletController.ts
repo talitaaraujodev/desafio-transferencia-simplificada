@@ -13,7 +13,7 @@ import {
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { UpdateWalletDto } from '../dto/UpdateWalletDto';
 import { CreateWalletDto } from '../dto/CreateWalletDto';
-import { Carteira } from '../persistence/entities/carteira.entity';
+import { Wallet } from '../persistence/entities/WalletEntity';
 import { WalletService } from '../services/WalletService';
 
 @Controller({ path: 'carteiras' })
@@ -24,13 +24,13 @@ export class WalletController {
 
   @Get()
   @ApiOperation({ summary: 'Listar todas as carteiras' })
-  async findAll(): Promise<Carteira[]> {
+  async findAll(): Promise<Wallet[]> {
     return await this.walletService.findAll();
   }
   @Post()
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Adicionar uma nova carteira' })
-  async create(@Body() body: CreateWalletDto): Promise<Carteira> {
+  async create(@Body() body: CreateWalletDto): Promise<Wallet> {
     return await this.walletService.create(body);
   }
   @Put(':id')
@@ -42,7 +42,7 @@ export class WalletController {
     )
     id: number,
     @Body() body: UpdateWalletDto,
-  ): Promise<Carteira> {
+  ): Promise<Wallet> {
     return await this.walletService.update(id, body);
   }
   @Get(':id')
@@ -53,7 +53,7 @@ export class WalletController {
       new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
     )
     id: number,
-  ): Promise<Carteira> {
+  ): Promise<Wallet> {
     return await this.walletService.findOne(id);
   }
   @Delete(':id')
@@ -64,7 +64,7 @@ export class WalletController {
       new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
     )
     id: number,
-  ): Promise<Carteira> {
+  ): Promise<Wallet> {
     return await this.walletService.delete(id);
   }
 }

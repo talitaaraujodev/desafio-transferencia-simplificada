@@ -1,11 +1,11 @@
-import { Transferencia } from '../../entities/transferencia.entity';
+import { Transfer } from '../../entities/TransferEntity';
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../../config/database/PrismaService';
 
 @Injectable()
 export class TransferenciaRepository {
   constructor(private readonly prisma: PrismaService) {}
-  async create(entity: Transferencia): Promise<Transferencia> {
+  async create(entity: Transfer): Promise<Transfer> {
     return await this.prisma.transferencias.create({
       data: {
         value: entity.value,
@@ -17,7 +17,7 @@ export class TransferenciaRepository {
       },
     });
   }
-  async update(id: number, entity: Transferencia): Promise<Transferencia> {
+  async update(id: number, entity: Transfer): Promise<Transfer> {
     return await this.prisma.transferencias.update({
       data: {
         value: entity.value,
@@ -30,13 +30,13 @@ export class TransferenciaRepository {
       where: { id },
     });
   }
-  async findAll(): Promise<Transferencia[]> {
+  async findAll(): Promise<Transfer[]> {
     return await this.prisma.transferencias.findMany();
   }
-  async findOne(id: number): Promise<Transferencia> {
+  async findOne(id: number): Promise<Transfer> {
     return await this.prisma.transferencias.findUnique({ where: { id } });
   }
-  async findLastId(): Promise<Transferencia> {
+  async findLastId(): Promise<Transfer> {
     return await this.prisma.transferencias.findFirst({
       orderBy: { id: 'desc' },
       take: 1,
