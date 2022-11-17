@@ -3,6 +3,7 @@ import { IsNotEmpty, IsEmail, MinLength, MaxLength } from 'class-validator';
 
 export class CreateUserDto {
   @IsNotEmpty({ message: 'Nome é obrigatório' })
+  @MinLength(5, { message: 'Nome deve ter pelo menos 5 caracteres' })
   @ApiProperty({ example: 'Talita' })
   name: string;
   @IsNotEmpty({ message: 'Cpf/Cnpj é obrigatório' })
@@ -19,3 +20,4 @@ export class CreateUserDto {
   @ApiProperty({ example: '123456' })
   password: string;
 }
+ 
