@@ -21,11 +21,11 @@ export class TransferService {
   ) {}
 
   async create(data: CreateTransferDto): Promise<Transfer> {
-    await this.walletService.findOne(data.carteira_origem);
-    await this.walletService.findOne(data.carteira_destinatario);
-    await this.userService.findOne(data.usuario_origem);
-    await this.walletService.findOne(data.usuario_destinatario);
-    await this.walletService.verifySaldo(data.carteira_origem, data.value);
+    await this.walletService.findOne(data.wallet_origem);
+    await this.walletService.findOne(data.wallet_destinatario);
+    await this.userService.findOne(data.user_origem);
+    await this.walletService.findOne(data.user_destinatario);
+    await this.walletService.verifySaldo(data.wallet_origem, data.value);
 
     const transfer = await this.transferRepository.create(data);
     const verifyAuthorization =
@@ -33,11 +33,11 @@ export class TransferService {
     const sendEmail = await this.emailClient.notifyEmail();
 
     const updateWalletOrigem = await this.walletService.decreaseSaldo(
-      data.carteira_origem,
+      data.wallet_origem,
       data.value,
     );
     const updateWalletDestinatario = await this.walletService.increaseSaldo(
-      data.carteira_destinatario,
+      data.wallet_destinatario,
       data.value,
     );
     const findLastIdTransfer = await this.transferRepository.findLastId();
@@ -54,10 +54,10 @@ export class TransferService {
         const transferencia: Transfer = {
           value: data.value,
           status: 'Finalizado',
-          carteira_origem: data.carteira_origem,
-          carteira_destinatario: data.carteira_destinatario,
-          usuario_origem: data.usuario_origem,
-          usuario_destinatario: data.usuario_destinatario,
+          wallet_origem: data.wallet_origem,
+          wallet_destinatario: data.wallet_destinatario,
+          user_origem: data.user_origem,
+          user_destinatario: data.user_destinatario,
         };
 
         return this.transferRepository.update(

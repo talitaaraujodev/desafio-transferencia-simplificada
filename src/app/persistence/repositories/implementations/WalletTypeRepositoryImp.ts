@@ -7,7 +7,7 @@ import { PrismaService } from '../../../config/database/PrismaService';
 export class WalletTypeRepositoryImp implements WalletTypeRepository {
   constructor(private prisma: PrismaService) {}
   async create(entity: WalletType): Promise<WalletType> {
-    return await this.prisma.tipoCarteira.create({
+    return await this.prisma.walletType.create({
       data: {
         name: entity.name,
         descricao: entity.descricao,
@@ -15,7 +15,7 @@ export class WalletTypeRepositoryImp implements WalletTypeRepository {
     });
   }
   async findAll(): Promise<WalletType[]> {
-    return await this.prisma.tipoCarteira.findMany();
+    return await this.prisma.walletType.findMany();
   }
   async findOne(id: number): Promise<WalletType> {
     return await this.prisma.permissions.findUnique({

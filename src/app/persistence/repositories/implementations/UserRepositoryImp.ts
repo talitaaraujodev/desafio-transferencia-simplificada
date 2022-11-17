@@ -8,7 +8,7 @@ import { UserRepository } from '../UserRepository';
 export class UserRepositoryImp implements UserRepository {
   constructor(private readonly prisma: PrismaService) {}
   async create(entity: User): Promise<User> {
-    return await this.prisma.usuarios.create({
+    return await this.prisma.users.create({
       data: {
         name: entity.name,
         cpf_cnpj: entity.cpf_cnpj,
@@ -18,29 +18,29 @@ export class UserRepositoryImp implements UserRepository {
     });
   }
   async findAll(): Promise<User[]> {
-    return await this.prisma.usuarios.findMany();
+    return await this.prisma.users.findMany();
   }
   async findOne(id: number): Promise<User> {
-    return await this.prisma.usuarios.findUnique({
+    return await this.prisma.users.findUnique({
       where: { id },
-      include: { UsuariosRoles: { include: { Roles: true } } },
+      include: { UsersRoles: { include: { Roles: true } } },
     });
   }
   async findByEmail(email: string): Promise<User> {
-    return await this.prisma.usuarios.findUnique({ where: { email } });
+    return await this.prisma.users.findUnique({ where: { email } });
   }
   async findByCpfCnpj(cpf_cnpj: string): Promise<User> {
-    return await this.prisma.usuarios.findUnique({ where: { cpf_cnpj } });
+    return await this.prisma.users.findUnique({ where: { cpf_cnpj } });
   }
 
   async findByLastId(): Promise<User> {
-    return await this.prisma.usuarios.findFirst({
+    return await this.prisma.users.findFirst({
       orderBy: { id: 'desc' },
       take: 1,
     });
   }
 
   async delete(id: number): Promise<User> {
-    return await this.prisma.usuarios.delete({ where: { id } });
+    return await this.prisma.users.delete({ where: { id } });
   }
 }

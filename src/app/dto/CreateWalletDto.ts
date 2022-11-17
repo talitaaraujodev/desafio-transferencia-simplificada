@@ -7,7 +7,7 @@ export class CreateWalletDto {
   saldo: number;
   @IsNotEmpty({ message: 'Usuário é obrigatório' })
   @ApiProperty()
-  usuario_id: number;
+  user_id: number;
   @IsNotEmpty({ message: 'Tipo de carteira é obrigatório' })
   @ApiProperty()
   tipo_id: number;

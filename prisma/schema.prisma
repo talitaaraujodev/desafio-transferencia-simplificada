@@ -7,17 +7,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Usuarios {
-  id                                  Int              @id @default(autoincrement())
-  name                                String
-  cpf_cnpj                            String           @unique @db.Char(14)
-  email                               String           @unique
-  password                            String
-  transferencias_usuario_origem       Transferencias[] @relation("transferencias_usuario_origem")
-  transferencias_usuario_destinatario Transferencias[] @relation("transferencias_usuario_destinatario")
-  UsuariosRoles                       UsuariosRoles[]
+model Users {
+  id                          Int          @id @default(autoincrement())
+  name                        String
+  cpf_cnpj                    String       @unique @db.Char(14)
+  email                       String       @unique
+  password                    String
+  transfers_user_origem       Transfers[]  @relation("transfers_user_origem")
+  transfers_user_destinatario Transfers[]  @relation("transfers_user_destinatario")
+  UsersRoles               UsersRoles[]
 
-  @@map("usuarios")
+  @@map("users")
 }
 
 model Permissions {
@@ -34,7 +34,7 @@ model Roles {
   name             String             @unique
   descricao        String
   PermissionsRoles PermissionsRoles[]
-  UsuariosRoles    UsuariosRoles[]
+  UsersRoles    UsersRoles[]
 
   @@map("roles")
 }
@@ -43,57 +43,57 @@ model PermissionsRoles {
   id            Int         @id @default(autoincrement())
   role_id       Int
   permission_id Int
-  roles         Roles       @relation(fields: [role_id], references: [id],  onDelete: Cascade)
-  Permissions   Permissions @relation(fields: [permission_id], references: [id],  onDelete: Cascade)
+  Roles         Roles       @relation(fields: [role_id], references: [id], onDelete: Cascade)
+  Permissions   Permissions @relation(fields: [permission_id], references: [id], onDelete: Cascade)
 
   @@map("permissions_roles")
 }
 
-model UsuariosRoles {
-  id         Int      @id @default(autoincrement())
-  usuario_id Int
-  role_id    Int
-  Usuarios   Usuarios @relation(fields: [usuario_id], references: [id],  onDelete: Cascade)
-  Roles      Roles    @relation(fields: [role_id], references: [id],  onDelete: Cascade)
+model UsersRoles {
+  id       Int   @id @default(autoincrement())
+  user_id  Int
+  role_id  Int
+  Usuarios Users @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  Roles    Roles @relation(fields: [role_id], references: [id], onDelete: Cascade)
 
-  @@map("usuarios_roles")
+  @@map("users_roles")
 }
 
-model TipoCarteira {
-  id        Int         @id @default(autoincrement())
-  name      String   
+model WalletType {
+  id        Int       @id @default(autoincrement())
+  name      String
   descricao String
-  Carteiras Carteiras[]
+  Wallets   Wallets[]
 
-  @@map("tipos_carteira")
+  @@map("wallet_type")
 }
 
-model Carteiras {
-  id                                   Int              @id @default(autoincrement())
-  saldo                                Float            @default(0.00)
-  usuario_id                           Int
-  tipo_id                              Int
-  TipoCarteira                         TipoCarteira     @relation(fields: [tipo_id], references: [id])
-  transferencias_carteira_origem       Transferencias[] @relation("transferencias_carteira_origem")
-  transferencias_carteira_destinatario Transferencias[] @relation("transferencias_carteira_destinatario")
+model Wallets {
+  id                            Int         @id @default(autoincrement())
+  saldo                         Float       @default(0.00)
+  user_id                       Int
+  tipo_id                       Int
+  WalletType                    WalletType  @relation(fields: [tipo_id], references: [id])
+  transfers_wallet_origem       Transfers[] @relation("transfers_wallet_origem")
+  transfers_wallet_destinatario Transfers[] @relation("transfers_wallet_destinatario")
 
-  @@map("carteiras")
+  @@map("wallets")
 }
 
-model Transferencias {
-  id                                   Int                  @id @default(autoincrement())
-  value                                Float
-  status                               TransferenciasStatus @default(Pendente)
-  carteira_origem                      Int
-  carteira_destinatario                Int
-  usuario_origem                       Int
-  usuario_destinatario                 Int
-  transferencias_carteira_origem       Carteiras            @relation("transferencias_carteira_origem", fields: [carteira_origem], references: [id])
-  transferencias_carteira_destinatario Carteiras            @relation("transferencias_carteira_destinatario", fields: [carteira_destinatario], references: [id],  onDelete: Cascade)
-  transferencias_usuario_origem        Usuarios             @relation("transferencias_usuario_origem", fields: [usuario_origem], references: [id], onDelete: Cascade)
-  transferencias_usuario_destinatario  Usuarios             @relation("transferencias_usuario_destinatario", fields: [usuario_destinatario], references: [id],  onDelete: Cascade)
+model Transfers {
+  id                            Int                  @id @default(autoincrement())
+  value                         Float
+  status                        TransferenciasStatus @default(Pendente)
+  wallet_origem                 Int
+  wallet_destinatario           Int
+  user_origem                   Int
+  user_destinatario             Int
+  transfers_wallet_origem       Wallets              @relation("transfers_wallet_origem", fields: [wallet_origem], references: [id])
+  transfers_wallet_destinatario Wallets              @relation("transfers_wallet_destinatario", fields: [wallet_destinatario], references: [id], onDelete: Cascade)
+  transfers_user_origem         Users                @relation("transfers_user_origem", fields: [user_origem], references: [id], onDelete: Cascade)
+  transfers_user_destinatario   Users                @relation("transfers_user_destinatario", fields: [user_destinatario], references: [id], onDelete: Cascade)
 
-  @@map("transferencias")
+  @@map("transfers")
 }
 
 enum TransferenciasStatus {

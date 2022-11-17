@@ -15,7 +15,7 @@ export class WalletService {
     private readonly walletTypeService: WalletTypeService,
   ) {}
   async create(data: CreateWalletDto): Promise<Wallet> {
-    await this.userService.findOne(data.usuario_id);
+    await this.userService.findOne(data.user_id);
     await this.walletTypeService.findOne(data.tipo_id);
     return await this.walletRepository.create(data);
   }
@@ -38,7 +38,7 @@ export class WalletService {
     return await this.walletRepository.delete(id);
   }
   async update(id: number, data: UpdateWalletDto): Promise<Wallet> {
-    await this.userService.findOne(data.usuario_id);
+    await this.userService.findOne(data.user_id);
     await this.walletTypeService.findOne(data.tipo_id);
     await this.findOne(id);
     return await this.walletRepository.update(id, data);
@@ -58,7 +58,7 @@ export class WalletService {
     const saldoAtual = wallet.saldo - value;
     const data: UpdateWalletDto = {
       saldo: saldoAtual,
-      usuario_id: wallet.usuario_id,
+      user_id: wallet.user_id,
       tipo_id: wallet.tipo_id,
     };
 
@@ -69,7 +69,7 @@ export class WalletService {
     const saldoAtual = wallet.saldo + value;
     const data: UpdateWalletDto = {
       saldo: saldoAtual,
-      usuario_id: wallet.usuario_id,
+      user_id: wallet.user_id,
       tipo_id: wallet.tipo_id,
     };
 

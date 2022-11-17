@@ -1,13 +1,13 @@
 -- CreateTable
-CREATE TABLE `usuarios` (
+CREATE TABLE `users` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(191) NOT NULL,
     `cpf_cnpj` CHAR(14) NOT NULL,
     `email` VARCHAR(191) NOT NULL,
     `password` VARCHAR(191) NOT NULL,
 
-    UNIQUE INDEX `usuarios_cpf_cnpj_key`(`cpf_cnpj`),
-    UNIQUE INDEX `usuarios_email_key`(`email`),
+    UNIQUE INDEX `users_cpf_cnpj_key`(`cpf_cnpj`),
+    UNIQUE INDEX `users_email_key`(`email`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -41,16 +41,16 @@ CREATE TABLE `permissions_roles` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `usuarios_roles` (
+CREATE TABLE `users_roles` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `usuario_id` INTEGER NOT NULL,
+    `user_id` INTEGER NOT NULL,
     `role_id` INTEGER NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `tipos_carteira` (
+CREATE TABLE `wallet_type` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(191) NOT NULL,
     `descricao` VARCHAR(191) NOT NULL,
@@ -59,24 +59,24 @@ CREATE TABLE `tipos_carteira` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `carteiras` (
+CREATE TABLE `wallets` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `saldo` DOUBLE NOT NULL DEFAULT 0.00,
-    `usuario_id` INTEGER NOT NULL,
+    `user_id` INTEGER NOT NULL,
     `tipo_id` INTEGER NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `transferencias` (
+CREATE TABLE `transfers` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `value` DOUBLE NOT NULL,
     `status` ENUM('Pendente', 'Finalizado') NOT NULL DEFAULT 'Pendente',
-    `carteira_origem` INTEGER NOT NULL,
-    `carteira_destinatario` INTEGER NOT NULL,
-    `usuario_origem` INTEGER NOT NULL,
-    `usuario_destinatario` INTEGER NOT NULL,
+    `wallet_origem` INTEGER NOT NULL,
+    `wallet_destinatario` INTEGER NOT NULL,
+    `user_origem` INTEGER NOT NULL,
+    `user_destinatario` INTEGER NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -88,22 +88,22 @@ ALTER TABLE `permissions_roles` ADD CONSTRAINT `permissions_roles_role_id_fkey` 
 ALTER TABLE `permissions_roles` ADD CONSTRAINT `permissions_roles_permission_id_fkey` FOREIGN KEY (`permission_id`) REFERENCES `permissions`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `usuarios_roles` ADD CONSTRAINT `usuarios_roles_usuario_id_fkey` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `users_roles` ADD CONSTRAINT `users_roles_user_id_fkey` FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `usuarios_roles` ADD CONSTRAINT `usuarios_roles_role_id_fkey` FOREIGN KEY (`role_id`) REFERENCES `roles`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `users_roles` ADD CONSTRAINT `users_roles_role_id_fkey` FOREIGN KEY (`role_id`) REFERENCES `roles`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `carteiras` ADD CONSTRAINT `carteiras_tipo_id_fkey` FOREIGN KEY (`tipo_id`) REFERENCES `tipos_carteira`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `wallets` ADD CONSTRAINT `wallets_tipo_id_fkey` FOREIGN KEY (`tipo_id`) REFERENCES `wallet_type`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `transferencias` ADD CONSTRAINT `transferencias_carteira_origem_fkey` FOREIGN KEY (`carteira_origem`) REFERENCES `carteiras`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `transfers` ADD CONSTRAINT `transfers_wallet_origem_fkey` FOREIGN KEY (`wallet_origem`) REFERENCES `wallets`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `transferencias` ADD CONSTRAINT `transferencias_carteira_destinatario_fkey` FOREIGN KEY (`carteira_destinatario`) REFERENCES `carteiras`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `transfers` ADD CONSTRAINT `transfers_wallet_destinatario_fkey` FOREIGN KEY (`wallet_destinatario`) REFERENCES `wallets`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `transferencias` ADD CONSTRAINT `transferencias_usuario_origem_fkey` FOREIGN KEY (`usuario_origem`) REFERENCES `usuarios`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `transfers` ADD CONSTRAINT `transfers_user_origem_fkey` FOREIGN KEY (`user_origem`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `transferencias` ADD CONSTRAINT `transferencias_usuario_destinatario_fkey` FOREIGN KEY (`usuario_destinatario`) REFERENCES `usuarios`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `transfers` ADD CONSTRAINT `transfers_user_destinatario_fkey` FOREIGN KEY (`user_destinatario`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
