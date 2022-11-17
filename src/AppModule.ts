@@ -37,7 +37,13 @@ export class AppModule implements NestModule {
         { path: 'permission', method: RequestMethod.ALL },
         { path: 'role', method: RequestMethod.ALL },
       )
-      .forRoutes({ path: 'usuarios', method: RequestMethod.ALL });
+      .forRoutes(
+        { path: 'user', method: RequestMethod.GET },
+        { path: 'user', method: RequestMethod.DELETE },
+        { path: 'wallet', method: RequestMethod.ALL },
+        { path: 'walletType', method: RequestMethod.ALL },
+        { path: 'transfer', method: RequestMethod.GET },
+      );
     consumer
       .apply(PermissionMiddlewareCreator(['ROLE_LOJISTA']))
       .exclude(

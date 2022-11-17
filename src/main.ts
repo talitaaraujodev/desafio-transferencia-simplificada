@@ -13,8 +13,9 @@ async function bootstrap() {
   });
   const config = new DocumentBuilder()
     .setTitle('Transferência Simplificada API')
-    .setDescription('Desafio Paguru Transferencia Simplificada.')
+    .setDescription('Desafio Paguru Transferência Simplificada.')
     .setVersion('1.0.0')
+    .addServer('http://localhost:3333')
     .addBearerAuth(
       {
         type: 'http',

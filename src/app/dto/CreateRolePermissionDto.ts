@@ -4,6 +4,6 @@ import { IsNotEmpty } from 'class-validator';
 
 export class CreateRolePermissionDto extends CreateRoleDto {
   @IsNotEmpty({ message: 'Permissões é obrigatório' })
-  @ApiProperty()
+  @ApiProperty({ example: [1] })
   permissions: number[];
 }

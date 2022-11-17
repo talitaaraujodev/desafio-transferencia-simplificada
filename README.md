@@ -105,7 +105,8 @@ Criar carteira
 
 ```json
 {
-  "usuario_id": 1,
+  "saldo": 10,
+  "user_id": 1,
   "tipo_id": 1
 }
 ```
@@ -119,10 +120,10 @@ Criar transferencia
 ```json
 {
   "value": 20,
-  "carteira_origem": 1,
-  "carteira_destinatario": 2,
-  "usuario_origem": 1,
-  "usuario_destinatario": 2
+  "wallet_origem": 1,
+  "wallet_destinatario": 2,
+  "user_origem": 1,
+  "user_destinatario": 2
 }
 ```
 
