@@ -1,18 +1,38 @@
 # Desafio Back-end Paguru
+
 Desafio Api de transferencia simplificada entre os usuários
-##  Instalação
+
+## Instalação
+
 ```
-npm i 
-````
+npm i
+```
+
+## Configuração .env
+
+Crie arquivo .env e configure suas credenciais seguindo o exemplo do arquivo .env.example
+Exemplo:
+
+```
+DATABASE_URL="mysql://username:secret@localhost:3306/transferencia_simplificada"
+JWT_SECRET = secret
+PORT = 3333
+```
+
 ## Execução do Projeto
+
 ```
 npx prisma migrate dev
 npm run start:dev
 ```
-## Fluxo do Projeto 
-###  Cadastre as permissions
+
+## Fluxo do Projeto
+
+### Cadastre as permissions
+
 Criar permissões do usuário
 Exemplo:
+
 ```json
 {
   "name": "Criar Transferencia",
@@ -20,45 +40,51 @@ Exemplo:
 }
 ```
 
-### Cadastre as roles: 
-Criar  roles do usuário
+### Cadastre as roles:
+
+Criar roles do usuário
 Exemplo:
+
 ```json
 {
   "name": "ROLE_ADMIN",
   "descricao": "Role de Admin",
-  "permissions": [
-    1,2,3
-  ]
+  "permissions": [1, 2, 3]
 }
 ```
+
 ### Crie 2 usuários p/ fazer a transferencia:
+
 Criar um usuário
 Exemplo:
+
 ```json
 {
   "name": "Talita Araujo",
   "cpf_cnpj": "99999999900",
   "email": "test@gmail.com",
   "password": "123456",
-  "roles": [
-   1
-  ]
-}
-```
-### Faça a autenticação:
-Authenticação do usuário
-Exemplo:
-```json
-{
-  "email": "test@gmail.com",
-  "password": "123456",
+  "roles": [1]
 }
 ```
 
-### Crie os tipos de carteira: 
+### Faça a autenticação:
+
+Authenticação do usuário
+Exemplo:
+
+```json
+{
+  "email": "test@gmail.com",
+  "password": "123456"
+}
+```
+
+### Crie os tipos de carteira:
+
 Criar tipos de carteira
 Exemplo:
+
 ```json
 {
   "name": "Carteira Lojista",
@@ -66,9 +92,11 @@ Exemplo:
 }
 ```
 
-### Crie 2 carteiras p/ os usuarios cadastrados: 
+### Crie 2 carteiras p/ os usuarios cadastrados:
+
 Criar carteira
 Exemplo:
+
 ```json
 {
   "usuario_id": 1,
@@ -77,8 +105,10 @@ Exemplo:
 ```
 
 ### Crie uma transferencia:
+
 Criar transferencia
 Exemplo:
+
 ```json
 {
   "value": 20,
@@ -88,7 +118,9 @@ Exemplo:
   "usuario_destinatario": 2
 }
 ```
+
 ## Documentação
+
 ```
 http://localhost:3333/doc
 ```
