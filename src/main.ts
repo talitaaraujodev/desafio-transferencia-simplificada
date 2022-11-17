@@ -14,7 +14,7 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('API Transferência Simplificada')
     .setDescription(
-      'Desafio Paguru Transferência Simplificada entre os usuários',
+      'Desafio Paguru Api de transferência simplificada entre os usuários',
     )
     .setVersion('1.0.0')
     .addServer('http://localhost:3333')
@@ -35,6 +35,6 @@ async function bootstrap() {
   app.useGlobalPipes(
     new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }),
   );
-  await app.listen(env.port);
+  await app.listen(env.port || 3333);
 }
 bootstrap();

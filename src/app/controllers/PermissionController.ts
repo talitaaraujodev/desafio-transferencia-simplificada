@@ -23,7 +23,7 @@ export class PermissionController {
     return await this.permissionService.create(body);
   }
   @Get()
-  @ApiOperation({ summary: 'Listar todas as permissions' })
+  @ApiOperation({ summary: 'Listar todas as permissões' })
   @ApiResponse({
     status: 200,
     description: 'Lista de permissions retornada com sucesso',

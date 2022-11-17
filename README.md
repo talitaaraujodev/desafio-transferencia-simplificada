@@ -1,6 +1,6 @@
 # Desafio Back-end Paguru
 
-Desafio transferência simplificada entre os usuários
+Desafio Api transferência simplificada entre os usuários
 
 ## Instalação
 
@@ -45,7 +45,7 @@ Exemplo:
 Criar roles do usuário (ROLE_LOJISTA, ROLE_COMUM)
 <br>
 
-#### Exemplo:
+#### Exemplo ROLE_COMUM:
 
 ```json
 {
@@ -55,7 +55,17 @@ Criar roles do usuário (ROLE_LOJISTA, ROLE_COMUM)
 }
 ```
 
-### Crie 2 usuários p/ fazer a transferência:
+#### Exemplo ROLE_LOJISTA:
+
+```json
+{
+  "name": "ROLE_LOJISTA",
+  "descricao": "Role de usuário Lojista",
+  "permissions": [1, 2, 3]
+}
+```
+
+### Crie 2 usuários para fazer a transferência entre ambos:
 
 Criar um usuário
 
@@ -113,7 +123,7 @@ Criar carteira
 
 ### Crie uma transferencia:
 
-Criar transferencia
+Criar transferência
 
 #### Exemplo:
 
@@ -127,8 +137,11 @@ Criar transferencia
 }
 ```
 
-## Documentação
+## Documentação 
 
+<p align="center">
+    <img alt="Documentação" src="./src/app/helpers/swagger/swagger.png"/>
+</p>
 ```
 http://localhost:3333/doc
 ```
