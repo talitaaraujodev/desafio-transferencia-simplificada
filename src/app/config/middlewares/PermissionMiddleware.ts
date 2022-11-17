@@ -25,7 +25,7 @@ export function PermissionMiddlewareCreator(
         Number(payload?.subject?.sub),
       );
 
-      const userRoles = user.UsuariosRoles.map((u: any) => u.Roles.name);
+      const userRoles = user.UsersRoles.map((u: any) => u.Roles.name);
 
       const existsRoles = userRoles?.some((r: any) => roles.includes(r));
       if (existsRoles) {

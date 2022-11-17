@@ -6,6 +6,7 @@ import { PrismaService } from '../../../config/database/PrismaService';
 @Injectable()
 export class WalletTypeRepositoryImp implements WalletTypeRepository {
   constructor(private prisma: PrismaService) {}
+
   async create(entity: WalletType): Promise<WalletType> {
     return await this.prisma.walletType.create({
       data: {
@@ -18,7 +19,25 @@ export class WalletTypeRepositoryImp implements WalletTypeRepository {
     return await this.prisma.walletType.findMany();
   }
   async findOne(id: number): Promise<WalletType> {
-    return await this.prisma.permissions.findUnique({
+    return await this.prisma.walletType.findUnique({
+      where: {
+        id,
+      },
+    });
+  }
+  async delete(id: number): Promise<WalletType> {
+    return await this.prisma.walletType.delete({
+      where: {
+        id,
+      },
+    });
+  }
+  async update(id: number, entity: WalletType): Promise<WalletType> {
+    return await this.prisma.walletType.update({
+      data: {
+        name: entity.name,
+        descricao: entity.descricao,
+      },
       where: {
         id,
       },

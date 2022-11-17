@@ -1,5 +1,6 @@
 import { Injectable, HttpException, HttpStatus, Inject } from '@nestjs/common';
 import { CreateWalletTypeDto } from '../dto/CreateWalletTypeDto';
+import { UpdateWalletTypeDto } from '../dto/UpdateWalletTypeDto';
 import { WalletType } from '../persistence/entities/WalletTypeEntity';
 import { WalletTypeRepository } from '../persistence/repositories/WalletTypeRepository';
 
@@ -7,18 +8,18 @@ import { WalletTypeRepository } from '../persistence/repositories/WalletTypeRepo
 export class WalletTypeService {
   constructor(
     @Inject('WalletTypeRepository')
-    private readonly walletTypeService: WalletTypeRepository,
+    private readonly walletTypeRepository: WalletTypeRepository,
   ) {}
 
   async create(data: CreateWalletTypeDto): Promise<WalletType> {
-    return await this.walletTypeService.create(data);
+    return await this.walletTypeRepository.create(data);
   }
   async findAll(): Promise<WalletType[]> {
-    return await this.walletTypeService.findAll();
+    return await this.walletTypeRepository.findAll();
   }
   async findOne(id: number): Promise<WalletType> {
     try {
-      const walletType = await this.walletTypeService.findOne(id);
+      const walletType = await this.walletTypeRepository.findOne(id);
       return walletType;
     } catch (error) {
       throw new HttpException(
@@ -26,5 +27,13 @@ export class WalletTypeService {
         HttpStatus.CONFLICT,
       );
     }
+  }
+  async delete(id: number): Promise<WalletType> {
+    await this.findOne(id);
+    return await this.walletTypeRepository.delete(id);
+  }
+  async update(id: number, data: UpdateWalletTypeDto): Promise<WalletType> {
+    await this.findOne(id);
+    return await this.walletTypeRepository.update(id, data);
   }
 }

@@ -16,6 +16,12 @@ import { CreatePermissionDto } from '../dto/CreatePermissionDto';
 export class PermissionController {
   constructor(private readonly permissionService: PermissionService) {}
 
+  @Post()
+  @HttpCode(HttpStatus.CREATED)
+  @ApiOperation({ summary: 'Adicionar uma nova permissão' })
+  async create(@Body() body: CreatePermissionDto): Promise<Permission> {
+    return await this.permissionService.create(body);
+  }
   @Get()
   @ApiOperation({ summary: 'Listar todas as permissions' })
   @ApiResponse({
@@ -26,11 +32,5 @@ export class PermissionController {
   })
   async findAll(): Promise<Permission[]> {
     return await this.permissionService.findAll();
-  }
-  @Post()
-  @HttpCode(HttpStatus.CREATED)
-  @ApiOperation({ summary: 'Adicionar uma nova permissão' })
-  async create(@Body() body: CreatePermissionDto): Promise<Permission> {
-    return await this.permissionService.create(body);
   }
 }

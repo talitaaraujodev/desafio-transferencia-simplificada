@@ -1,7 +1,21 @@
 import { Transfer } from '../persistence/entities/TransferEntity';
 import { CreateTransferDto } from '../dto/CreateTranferDto';
-import { Controller, HttpCode, HttpStatus, Body, Post } from '@nestjs/common';
-import { ApiBearerAuth, ApiTags, ApiOperation } from '@nestjs/swagger';
+import {
+  Controller,
+  HttpCode,
+  HttpStatus,
+  Body,
+  Post,
+  Get,
+  Param,
+  ParseIntPipe,
+} from '@nestjs/common';
+import {
+  ApiBearerAuth,
+  ApiTags,
+  ApiOperation,
+  ApiResponse,
+} from '@nestjs/swagger';
 import { TransferService } from '../services/TranferService';
 
 @Controller('transfer')
@@ -15,5 +29,27 @@ export class TransferController {
   @ApiOperation({ summary: 'Adicionar uma nova tranferencia' })
   async create(@Body() body: CreateTransferDto): Promise<Transfer> {
     return await this.transferService.create(body);
+  }
+  @Get()
+  @ApiOperation({ summary: 'Listar todas os usuários' })
+  @ApiResponse({
+    status: 200,
+    description: 'Lista de transferências retornada com sucesso',
+    type: Transfer,
+    isArray: true,
+  })
+  async findAll(): Promise<Transfer[]> {
+    return await this.transferService.findAll();
+  }
+  @Get(':id')
+  @ApiOperation({ summary: 'Exibir os dados de uma transferência' })
+  async findOne(
+    @Param(
+      'id',
+      new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
+    )
+    id: number,
+  ): Promise<Transfer> {
+    return await this.transferService.findOne(id);
   }
 }

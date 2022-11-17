@@ -45,7 +45,7 @@ export class AppModule implements NestModule {
         { path: 'transfer', method: RequestMethod.GET },
       );
     consumer
-      .apply(PermissionMiddlewareCreator(['ROLE_LOJISTA']))
+      .apply(PermissionMiddlewareCreator(['ROLE_COMUM']))
       .exclude(
         { path: 'login', method: RequestMethod.POST },
         { path: 'user', method: RequestMethod.POST },
@@ -56,7 +56,7 @@ export class AppModule implements NestModule {
       )
       .forRoutes({ path: 'transfer', method: RequestMethod.POST });
     consumer
-      .apply(PermissionMiddlewareCreator(['ROLE_LOJISTA, ROLE_COMUM']))
+      .apply(PermissionMiddlewareCreator(['ROLE_LOJISTA', 'ROLE_COMUM']))
       .forRoutes(
         { path: 'transfer', method: RequestMethod.GET },
         { path: 'wallet', method: RequestMethod.ALL },

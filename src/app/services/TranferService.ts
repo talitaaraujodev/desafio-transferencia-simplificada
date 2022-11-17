@@ -75,4 +75,18 @@ export class TransferService {
 
     return result;
   }
+  async findAll(): Promise<Transfer[]> {
+    return await this.transferRepository.findAll();
+  }
+  async findOne(id: number): Promise<Transfer> {
+    try {
+      const transfer = await this.transferRepository.findOne(id);
+      return transfer;
+    } catch (error) {
+      throw new HttpException(
+        'Transferência não foi encontrada',
+        HttpStatus.CONFLICT,
+      );
+    }
+  }
 }

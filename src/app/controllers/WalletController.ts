@@ -27,6 +27,12 @@ import { WalletService } from '../services/WalletService';
 export class WalletController {
   constructor(private readonly walletService: WalletService) {}
 
+  @Post()
+  @HttpCode(HttpStatus.CREATED)
+  @ApiOperation({ summary: 'Adicionar uma nova carteira' })
+  async create(@Body() body: CreateWalletDto): Promise<Wallet> {
+    return await this.walletService.create(body);
+  }
   @Get()
   @ApiOperation({ summary: 'Listar todas as carteiras' })
   @ApiResponse({
@@ -37,12 +43,6 @@ export class WalletController {
   })
   async findAll(): Promise<Wallet[]> {
     return await this.walletService.findAll();
-  }
-  @Post()
-  @HttpCode(HttpStatus.CREATED)
-  @ApiOperation({ summary: 'Adicionar uma nova carteira' })
-  async create(@Body() body: CreateWalletDto): Promise<Wallet> {
-    return await this.walletService.create(body);
   }
   @Put(':id')
   @ApiOperation({ summary: 'Atualizar os dados de uma carteira' })

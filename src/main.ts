@@ -12,8 +12,10 @@ async function bootstrap() {
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
   });
   const config = new DocumentBuilder()
-    .setTitle('Transferência Simplificada API')
-    .setDescription('Desafio Paguru Transferência Simplificada.')
+    .setTitle('API Transferência Simplificada')
+    .setDescription(
+      'Desafio Paguru Transferência Simplificada entre os usuários',
+    )
     .setVersion('1.0.0')
     .addServer('http://localhost:3333')
     .addBearerAuth(

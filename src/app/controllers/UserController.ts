@@ -23,6 +23,12 @@ import { UserService } from '../services/UserService';
 @ApiTags('Usuarios')
 export class UserController {
   constructor(private readonly userService: UserService) {}
+  @Post()
+  @HttpCode(HttpStatus.CREATED)
+  @ApiOperation({ summary: 'Adicionar uma novo usuário' })
+  async create(@Body() body: CreateUserRoleDto): Promise<User> {
+    return await this.userService.create(body);
+  }
   @ApiBearerAuth('access-token')
   @Get()
   @ApiOperation({ summary: 'Listar todas os usuários' })
@@ -34,12 +40,6 @@ export class UserController {
   })
   async findAll(): Promise<User[]> {
     return await this.userService.findAll();
-  }
-  @Post()
-  @HttpCode(HttpStatus.CREATED)
-  @ApiOperation({ summary: 'Adicionar uma novo usuário' })
-  async create(@Body() body: CreateUserRoleDto): Promise<User> {
-    return await this.userService.create(body);
   }
   @ApiBearerAuth('access-token')
   @Get(':id')
