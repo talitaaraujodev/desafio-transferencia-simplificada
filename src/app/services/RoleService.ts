@@ -65,7 +65,7 @@ export class RoleService {
       permissions,
     );
     if (permissionExists) {
-      throw new HttpException('Permission já existente', HttpStatus.CONFLICT);
+      throw new HttpException('Permissiões são inválidas', HttpStatus.CONFLICT);
     }
     return await this.permissionRepository.findManyByIds(permissions);
   }

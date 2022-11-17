@@ -1,6 +1,7 @@
+import { HttpException, HttpStatus } from '@nestjs/common';
 import { AuthorizationTransactionClient } from './../AuthorizationTransactionClient';
-import axios from '../../config/axios/AxiosConfig';
 import { AuthorizationDto } from 'src/app/dto/AuthorizationDto';
+import axios from '../../config/axios/AxiosConfig';
 
 export class AuthorizationTransactionClientImp
   implements AuthorizationTransactionClient
@@ -16,6 +17,10 @@ export class AuthorizationTransactionClientImp
       })
       .catch((err) => {
         console.log(err);
+        throw new HttpException(
+          'Trasação não foi autorizada.',
+          HttpStatus.BAD_GATEWAY,
+        );
       });
   }
 }

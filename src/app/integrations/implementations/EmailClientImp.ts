@@ -1,3 +1,4 @@
+import { HttpException, HttpStatus } from '@nestjs/common';
 import { EmailClient } from '../EmailClient';
 import { EmailDto } from 'src/app/dto/EmailDto';
 import axios from '../../config/axios/AxiosConfig';
@@ -14,6 +15,10 @@ export class EmailClientImp implements EmailClient {
       })
       .catch((err) => {
         console.log(err);
+        throw new HttpException(
+          'Falha ao enviar notificação no e-mail.',
+          HttpStatus.BAD_GATEWAY,
+        );
       });
   }
 }

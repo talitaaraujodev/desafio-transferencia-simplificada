@@ -49,5 +49,12 @@ export class AppModule implements NestModule {
         { path: 'walletType', method: RequestMethod.ALL },
       )
       .forRoutes({ path: 'transfer', method: RequestMethod.POST });
+    consumer
+      .apply(PermissionMiddlewareCreator(['ROLE_LOJISTA, ROLE_COMUM']))
+      .forRoutes(
+        { path: 'transfer', method: RequestMethod.GET },
+        { path: 'wallet', method: RequestMethod.ALL },
+        { path: 'walletType', method: RequestMethod.ALL },
+      );
   }
 }

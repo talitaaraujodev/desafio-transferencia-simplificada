@@ -28,11 +28,11 @@ export class UserService {
     };
     const createUser = await this.userRepository.create(user);
     const findLastUser = await this.userRepository.findByLastId();
-    const createUsuarioRole = this.userRoleRepository.create(
+    const createUserRole = this.userRoleRepository.create(
       findLastUser.id,
       data.roles,
     );
-    const result = Promise.all([createUser, findLastUser, createUsuarioRole])
+    const result = Promise.all([createUser, findLastUser, createUserRole])
       .then(() => {
         return {
           id: createUser.id,

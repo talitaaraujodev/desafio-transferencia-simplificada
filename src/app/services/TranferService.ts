@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable, Inject, HttpStatus, HttpException } from '@nestjs/common';
 import { EmailClient } from './../integrations/EmailClient';
 import { AuthorizationTransactionClient } from './../integrations/AuthorizationTransactionClient';
 import { CreateTransferDto } from '../dto/CreateTranferDto';
@@ -32,22 +32,22 @@ export class TransferService {
       await this.authorizationTransactionClient.authorization();
     const sendEmail = await this.emailClient.notifyEmail();
 
-    const updateCarteiraOrigem = await this.walletService.decreaseSaldo(
+    const updateWalletOrigem = await this.walletService.decreaseSaldo(
       data.carteira_origem,
       data.value,
     );
-    const updateCarteiraDestinatario = await this.walletService.increaseSaldo(
+    const updateWalletDestinatario = await this.walletService.increaseSaldo(
       data.carteira_destinatario,
       data.value,
     );
-    const findLastIdTransferencia = await this.transferRepository.findLastId();
+    const findLastIdTransfer = await this.transferRepository.findLastId();
 
     const result: any = Promise.all([
       transfer,
       verifyAuthorization,
-      findLastIdTransferencia,
-      updateCarteiraOrigem,
-      updateCarteiraDestinatario,
+      findLastIdTransfer,
+      updateWalletOrigem,
+      updateWalletDestinatario,
       sendEmail,
     ])
       .then(() => {
@@ -61,12 +61,16 @@ export class TransferService {
         };
 
         return this.transferRepository.update(
-          findLastIdTransferencia.id,
+          findLastIdTransfer.id,
           transferencia,
         );
       })
       .catch((erro) => {
         console.log(erro);
+        throw new HttpException(
+          'Ocorreram erros ao concluir transferência',
+          HttpStatus.BAD_GATEWAY,
+        );
       });
 
     return result;
