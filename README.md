@@ -11,7 +11,7 @@ npm i
 ## Configuração .env
 
 Crie arquivo .env e configure suas credenciais seguindo o exemplo do arquivo .env.example
-Exemplo:
+#### Exemplo:
 
 ```
 DATABASE_URL="mysql://username:secret@localhost:3306/transferencia_simplificada"
