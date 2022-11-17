@@ -1,6 +1,6 @@
 import { EmailClient } from '../EmailClient';
 import { EmailDto } from 'src/app/dto/EmailDto';
-import axios from '../../config/axios/axios.config';
+import axios from '../../config/axios/AxiosConfig';
 
 export class EmailClientImp implements EmailClient {
   private BASE_URL = 'http://o4d9z.mocklab.io/notify';

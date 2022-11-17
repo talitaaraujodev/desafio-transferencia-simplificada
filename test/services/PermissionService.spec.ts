@@ -1,5 +1,6 @@
+import { PermissionRepository } from './../../dist/app/persistence/repositories/PermissionRepository.d';
 import { CreatePermissionDto } from '../../src/app/dto/CreatePermissionDto';
-import { PermissionRepository } from '../../src/app/persistence/repositories/implementations/PermissionRepositoryImp';
+import { PermissionRepositoryImp } from '../../src/app/persistence/repositories/implementations/PermissionRepositoryImp';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Permission } from '../../src/app/persistence/entities/PermissionEntity';
 import { PermissionService } from '../../src/app/services/PermissionService';
@@ -24,7 +25,8 @@ describe('PermissionService unit test', () => {
       providers: [
         PermissionService,
         {
-          provide: PermissionRepository,
+          provide: 'PermissionRepository',
+          useClass: PermissionRepositoryImp,
           useValue: {
             findAll: jest.fn().mockResolvedValue(mockSut().permissions),
             create: jest.fn().mockResolvedValue(mockSut().newPermission),
@@ -35,8 +37,9 @@ describe('PermissionService unit test', () => {
     }).compile();
 
     permissionService = module.get<PermissionService>(PermissionService);
-    permissionRepository =
-      module.get<PermissionRepository>(PermissionRepository);
+    permissionRepository = module.get<PermissionRepository>(
+      PermissionRepositoryImp,
+    );
   });
 
   it('should be defined', () => {

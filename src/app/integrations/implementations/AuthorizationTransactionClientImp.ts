@@ -1,5 +1,5 @@
 import { AuthorizationTransactionClient } from './../AuthorizationTransactionClient';
-import axios from '../../config/axios/axios.config';
+import axios from '../../config/axios/AxiosConfig';
 import { AuthorizationDto } from 'src/app/dto/AuthorizationDto';
 
 export class AuthorizationTransactionClientImp

@@ -12,8 +12,8 @@ import { PermissionModule } from './app/modules/PermissionModule';
 import { PrismaModule } from './app/config/database/PrismaModule';
 import { AuthModule } from './app/modules/AuthModule';
 import { TransferModule } from './app/modules/TranferModule';
-import { PermissionMiddlewareCreator } from './app/config/middlewares/permission.middleware';
-import { AuthMiddleware } from './app/config/middlewares/auth.middleware';
+import { PermissionMiddlewareCreator } from './app/config/middlewares/PermissionMiddleware';
+import { AuthMiddleware } from './app/config/middlewares/AuthMiddleware';
 
 @Module({
   imports: [

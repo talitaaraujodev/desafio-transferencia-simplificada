@@ -1,5 +1,6 @@
+import { WalletTypeRepositoryImp } from './../../src/app/persistence/repositories/implementations/WalletTypeRepositoryImp';
 import { CreateWalletTypeDto } from '../../src/app/dto/CreateWalletTypeDto';
-import { TipoCarteiraRepository } from '../../src/app/persistence/repositories/implementations/WalletTypeRepositoryImp';
+import { WalletTypeRepository } from '../../src/app/persistence/repositories/WalletTypeRepository';
 import { Test, TestingModule } from '@nestjs/testing';
 import { WalletType } from '../../src/app/persistence/entities/WalletTypeEntity';
 import { WalletTypeService } from '../../src/app/services/WalletTypeService';
@@ -17,14 +18,15 @@ const mockSut = () => {
 };
 describe('WalletTypeService unit tests', () => {
   let walletTypeService: WalletTypeService;
-  let walletTypeRepository: TipoCarteiraRepository;
+  let walletTypeRepository: WalletTypeRepository;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         WalletTypeService,
         {
-          provide: TipoCarteiraRepository,
+          provide: 'WalletTypeRepository',
+          useClass: WalletTypeRepositoryImp,
           useValue: {
             findAll: jest.fn().mockResolvedValue(mockSut().walletTypes),
             create: jest.fn().mockResolvedValue(mockSut().newWalletType),
@@ -34,8 +36,8 @@ describe('WalletTypeService unit tests', () => {
     }).compile();
 
     walletTypeService = module.get<WalletTypeService>(WalletTypeService);
-    walletTypeRepository = module.get<TipoCarteiraRepository>(
-      TipoCarteiraRepository,
+    walletTypeRepository = module.get<WalletTypeRepository>(
+      WalletTypeRepositoryImp,
     );
   });
 

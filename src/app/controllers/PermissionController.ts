@@ -20,7 +20,7 @@ export class PermissionController {
   @ApiOperation({ summary: 'Listar todas as permissions' })
   @ApiResponse({
     status: 200,
-    description: 'Lista de permission retornada com sucesso',
+    description: 'Lista de permissions retornada com sucesso',
     type: Permission,
     isArray: true,
   })
