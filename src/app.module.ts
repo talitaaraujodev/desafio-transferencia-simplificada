@@ -4,27 +4,27 @@ import {
   NestModule,
   RequestMethod,
 } from '@nestjs/common';
-import { CarteiraModule } from './app/modules/carteira.module';
-import { TipoCarteiraModule } from './app/modules/tipoCarteira.module';
-import { RoleModule } from './app/modules/role.module';
-import { UsuarioModule } from './app/modules/usuario.module';
-import { PermissionModule } from './app/modules/permission.module';
-import { PrismaModule } from './app/database/prisma.module';
-import { AuthModule } from './app/modules/auth.module';
-import { TransferenciaModule } from './app/modules/transferencia.module';
-import { PermissionMiddlewareCreator } from './app/middlewares/permission.middleware';
-import { AuthMiddleware } from './app/middlewares/auth.middleware';
+import { WalletModule } from './app/modules/WalletModule';
+import { WalletTypeModule } from './app/modules/WalletTypeModule';
+import { RoleModule } from './app/modules/RoleModule';
+import { UserModule } from './app/modules/UserModule';
+import { PermissionModule } from './app/modules/PermissionModule';
+import { PrismaModule } from './app/config/database/PrismaModule';
+import { AuthModule } from './app/modules/AuthModule';
+import { TransferModule } from './app/modules/TranferModule';
+import { PermissionMiddlewareCreator } from './app/config/middlewares/permission.middleware';
+import { AuthMiddleware } from './app/config/middlewares/auth.middleware';
 
 @Module({
   imports: [
     PrismaModule,
     PermissionModule,
     RoleModule,
-    UsuarioModule,
+    UserModule,
     AuthModule,
-    TipoCarteiraModule,
-    CarteiraModule,
-    TransferenciaModule,
+    WalletTypeModule,
+    WalletModule,
+    TransferModule,
   ],
 })
 export class AppModule implements NestModule {

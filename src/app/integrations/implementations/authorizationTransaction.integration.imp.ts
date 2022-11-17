@@ -1,4 +1,4 @@
-import axios from '../../config/axios.config';
+import axios from '../../config/axios/axios.config';
 
 export class AuthorizationIntegrationImp {
   private BASE_URL =

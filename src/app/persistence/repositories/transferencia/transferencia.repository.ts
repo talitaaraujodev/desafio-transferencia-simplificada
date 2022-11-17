@@ -1,6 +1,6 @@
 import { Transferencia } from '../../entities/transferencia.entity';
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '../../../database/prisma.service';
+import { PrismaService } from '../../../config/database/PrismaService';
 
 @Injectable()
 export class TransferenciaRepository {

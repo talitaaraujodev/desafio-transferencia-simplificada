@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { TipoCarteira } from './../../entities/tipoCarteira.entity';
-import { PrismaService } from './../../../database/prisma.service';
+import { PrismaService } from '../../../config/database/PrismaService';
 
 @Injectable()
 export class TipoCarteiraRepository {
