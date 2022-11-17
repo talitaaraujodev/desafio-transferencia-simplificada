@@ -3,9 +3,9 @@ import { CreateRolePermissionDto } from '../dto/CreateRolePermissionDto';
 import { CreateRoleDto } from '../dto/CreateRoleDto';
 import { Permission } from '../persistence/entities/PermissionEntity';
 import { Role } from '../persistence/entities/RoleEntity';
-import { PermissionRepository } from '../persistence/repositories/permission/permission.repository';
-import { RoleRepository } from '../persistence/repositories/role/role.repository';
-import { PermissionRoleRepository } from '../persistence/repositories/permissionRole/permissionRole.repository';
+import { PermissionRepository } from '../persistence/repositories/PermissionRepository';
+import { RoleRepository } from '../persistence/repositories/RoleRepository';
+import { PermissionRoleRepository } from '../persistence/repositories/PermissionRoleRepository';
 
 @Injectable()
 export class RoleService {

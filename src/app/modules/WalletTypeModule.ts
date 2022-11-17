@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
-import { TipoCarteiraRepository } from '../persistence/repositories/tipoCarteira/tipoCarteira.repository';
+import { WalletTypeRepository } from '../persistence/repositories/WalletTypeRepository';
 import { WalletTypeService } from '../services/WalletTypeService';
 import { WalletTypeController } from '../controllers/WalletTypeController';
 import { PrismaService } from '../config/database/PrismaService';
 
 @Module({
   controllers: [WalletTypeController],
-  providers: [WalletTypeService, TipoCarteiraRepository, PrismaService],
-  exports: [WalletTypeService, TipoCarteiraRepository],
+  providers: [WalletTypeService, WalletTypeRepository, PrismaService],
+  exports: [WalletTypeService, WalletTypeRepository],
 })
 export class WalletTypeModule {}

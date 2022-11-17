@@ -1,10 +1,10 @@
-import { PermissionRoleRepository } from '../persistence/repositories/permissionRole/permissionRole.repository';
-import { RoleRepository } from '../persistence/repositories/role/role.repository';
-import { PermissionRepository } from '../persistence/repositories/permission/permission.repository';
+import { PermissionRoleRepository } from '../persistence/repositories/PermissionRoleRepository';
+import { RoleRepository } from '../persistence/repositories/RoleRepository';
+import { PermissionRepository } from '../persistence/repositories/PermissionRepository';
 import { RoleService } from '../services/RoleService';
 import { Module } from '@nestjs/common';
-import { UsuarioRoleRepository } from '../persistence/repositories/usuarioRole/usuarioRole.repository';
-import { UsuarioRepository } from '../persistence/repositories/usuario/usuario.repository';
+import { UserRoleRepository } from '../persistence/repositories/UserRoleRepository';
+import { UserRepository } from '../persistence/repositories/UserRepository';
 import { UserService } from '../services/UserService';
 import { UserController } from '../controllers/UserController';
 import { PrismaService } from '../config/database/PrismaService';
@@ -13,14 +13,14 @@ import { PrismaService } from '../config/database/PrismaService';
   controllers: [UserController],
   providers: [
     UserService,
-    UsuarioRepository,
-    UsuarioRoleRepository,
+    UserRepository,
+    UserRoleRepository,
     RoleService,
     RoleRepository,
     PermissionRepository,
     PermissionRoleRepository,
     PrismaService,
   ],
-  exports: [UsuarioRepository, UserService],
+  exports: [UserRepository, UserService],
 })
 export class UserModule {}

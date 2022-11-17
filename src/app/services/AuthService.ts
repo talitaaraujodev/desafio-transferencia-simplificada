@@ -1,7 +1,7 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { compareSync } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
-import { UsuarioRepository } from '../persistence/repositories/usuario/usuario.repository';
+import { UserRepository } from '../persistence/repositories/UserRepository';
 import { PayloadDto } from '../dto/PayloadDto';
 import { LoginDto } from '../dto/LoginDto';
 import { TokenDto } from '../dto/TokenDto';
@@ -10,7 +10,7 @@ import env from '../config/env';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly usuarioRepository: UsuarioRepository) {}
+  constructor(private readonly usuarioRepository: UserRepository) {}
   async login(data: LoginDto): Promise<TokenDto> {
     const user = await this.validateCredentials(data);
 

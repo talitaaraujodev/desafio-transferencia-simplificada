@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { Wallet } from '../../entities/WalletEntity';
-import { PrismaService } from '../../../config/database/PrismaService';
+import { Wallet } from '../entities/WalletEntity';
+import { PrismaService } from '../../config/database/PrismaService';
 
 @Injectable()
-export class CarteiraRepository {
+export class WalletRepository {
   constructor(private prisma: PrismaService) {}
   async create(entity: Wallet): Promise<Wallet> {
     return await this.prisma.carteiras.create({

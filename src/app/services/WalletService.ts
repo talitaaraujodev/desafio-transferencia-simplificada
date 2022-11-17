@@ -3,13 +3,13 @@ import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { WalletTypeService } from './WalletTypeService';
 import { Wallet } from '../persistence/entities/WalletEntity';
 import { CreateWalletDto } from '../dto/CreateWalletDto';
-import { CarteiraRepository } from '../persistence/repositories/carteira/carteira.repository';
+import { WalletRepository } from '../persistence/repositories/WalletRepository';
 import { UserService } from './UserService';
 
 @Injectable()
 export class WalletService {
   constructor(
-    private readonly walletRepository: CarteiraRepository,
+    private readonly walletRepository: WalletRepository,
     private readonly userService: UserService,
     private readonly walletTypeService: WalletTypeService,
   ) {}

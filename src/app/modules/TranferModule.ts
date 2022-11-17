@@ -2,17 +2,17 @@ import { EmailClienteIntegrationImp } from '../persistence/integrations/implemen
 import { AuthorizationIntegrationImp } from '../persistence/integrations/implementations/authorizationTransaction.integration.imp';
 import { AuthorizationTransactionIntegration } from '../persistence/integrations/authorizationTransaction.integration';
 import { EmailClientIntegration } from '../persistence/integrations/emailClient.integration';
-import { TipoCarteiraRepository } from './../persistence/repositories/tipoCarteira/tipoCarteira.repository';
+import { WalletTypeRepository } from '../persistence/repositories/WalletTypeRepository';
 import { WalletTypeService } from '../services/WalletTypeService';
-import { CarteiraRepository } from './../persistence/repositories/carteira/carteira.repository';
+import { WalletRepository } from '../persistence/repositories/WalletRepository';
 import { UserService } from '../services/UserService';
-import { PermissionRoleRepository } from './../persistence/repositories/permissionRole/permissionRole.repository';
-import { PermissionRepository } from './../persistence/repositories/permission/permission.repository';
-import { RoleRepository } from './../persistence/repositories/role/role.repository';
-import { UsuarioRoleRepository } from './../persistence/repositories/usuarioRole/usuarioRole.repository';
-import { UsuarioRepository } from './../persistence/repositories/usuario/usuario.repository';
+import { PermissionRoleRepository } from '../persistence/repositories/PermissionRoleRepository';
+import { PermissionRepository } from '../persistence/repositories/PermissionRepository';
+import { RoleRepository } from '../persistence/repositories/RoleRepository';
+import { UserRoleRepository } from '../persistence/repositories/UserRoleRepository';
+import { UserRepository } from '../persistence/repositories/UserRepository';
 import { WalletService } from '../services/WalletService';
-import { TransferenciaRepository } from './../persistence/repositories/transferencia/transferencia.repository';
+import { TransferRepository } from '../persistence/repositories/TransferRepository';
 import { Module } from '@nestjs/common';
 import { TransferController } from '../controllers/TransferController';
 import { TransferService } from '../services/TranferService';
@@ -23,7 +23,7 @@ import { RoleService } from '../services/RoleService';
   controllers: [TransferController],
   providers: [
     TransferService,
-    TransferenciaRepository,
+    TransferRepository,
     UserService,
     WalletService,
     WalletTypeService,
@@ -32,10 +32,10 @@ import { RoleService } from '../services/RoleService';
     EmailClienteIntegrationImp,
     AuthorizationTransactionIntegration,
     AuthorizationIntegrationImp,
-    TipoCarteiraRepository,
-    CarteiraRepository,
-    UsuarioRepository,
-    UsuarioRoleRepository,
+    WalletTypeRepository,
+    WalletRepository,
+    UserRepository,
+    UserRoleRepository,
     RoleRepository,
     PermissionRepository,
     PermissionRoleRepository,

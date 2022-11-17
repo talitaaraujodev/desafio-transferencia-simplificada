@@ -1,8 +1,8 @@
-import { PrismaService } from '../../../config/database/PrismaService';
+import { PrismaService } from '../../config/database/PrismaService';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class UsuarioRoleRepository {
+export class UserRoleRepository {
   constructor(private readonly prisma: PrismaService) {}
   async create(usuario: number, roles: number[]): Promise<void> {
     for (const role of roles) {

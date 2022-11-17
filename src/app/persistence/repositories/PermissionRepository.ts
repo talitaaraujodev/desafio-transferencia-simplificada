@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { Permission } from '../../entities/PermissionEntity';
-import { PrismaService } from '../../../config/database/PrismaService';
+import { Permission } from '../entities/PermissionEntity';
+import { PrismaService } from '../../config/database/PrismaService';
 
 @Injectable()
 export class PermissionRepository {

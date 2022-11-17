@@ -1,17 +1,17 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { RoleService } from './RoleService';
 import { CreateUserRoleDto } from '../dto/CreateUserRoleDto';
-import { UsuarioRoleRepository } from '../persistence/repositories/usuarioRole/usuarioRole.repository';
-import { UsuarioRepository } from '../persistence/repositories/usuario/usuario.repository';
+import { UserRoleRepository } from '../persistence/repositories/UserRoleRepository';
+import { UserRepository } from '../persistence/repositories/UserRepository';
 import { User } from '../persistence/entities/UserEntity';
 import { CreateUserDto } from '../dto/CreateUserDto';
 
 @Injectable()
 export class UserService {
   constructor(
-    private readonly userRepository: UsuarioRepository,
+    private readonly userRepository: UserRepository,
     private readonly roleService: RoleService,
-    private readonly userRoleRepository: UsuarioRoleRepository,
+    private readonly userRoleRepository: UserRoleRepository,
   ) {}
   async create(data: CreateUserRoleDto): Promise<User> {
     await this.verifyExistsEmail(data.email);

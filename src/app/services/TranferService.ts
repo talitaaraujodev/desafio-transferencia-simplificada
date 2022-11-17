@@ -4,7 +4,7 @@ import { EmailClientIntegration } from '../persistence/integrations/emailClient.
 import { CreateTransferDto } from '../dto/CreateTranferDto';
 import { UserService } from './UserService';
 import { Transfer } from '../persistence/entities/TransferEntity';
-import { TransferenciaRepository } from '../persistence/repositories/transferencia/transferencia.repository';
+import { TransferRepository } from '../persistence/repositories/TransferRepository';
 import { WalletService } from './WalletService';
 
 @Injectable()
@@ -12,7 +12,7 @@ export class TransferService {
   constructor(
     private readonly walletService: WalletService,
     private readonly userService: UserService,
-    private readonly transferRepository: TransferenciaRepository,
+    private readonly transferRepository: TransferRepository,
     private readonly emailClientIntegration: EmailClientIntegration,
     private readonly authorizationTransactionIntegration: AuthorizationTransactionIntegration,
   ) {}
