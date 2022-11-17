@@ -49,7 +49,6 @@ Exemplo:
 ### Faça a autenticação:
 Authenticação do usuário
 Exemplo:
-Cadastro de usuário
 ```json
 {
   "email": "test@gmail.com",
