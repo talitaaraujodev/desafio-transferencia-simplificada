@@ -1,10 +1,10 @@
-import { Injectable } from '@nestjs/common';
-import { AuthorizationTransactionIntegration } from '../persistence/integrations/authorizationTransaction.integration';
-import { EmailClientIntegration } from '../persistence/integrations/emailClient.integration';
+import { Injectable, Inject } from '@nestjs/common';
+import { AuthorizationTransactionIntegration } from '../integrations/authorizationTransaction.integration';
+import { EmailClientIntegration } from '../integrations/emailClient.integration';
 import { CreateTransferDto } from '../dto/CreateTranferDto';
 import { UserService } from './UserService';
 import { Transfer } from '../persistence/entities/TransferEntity';
-import { TransferRepository } from '../persistence/repositories/TransferRepository';
+import { TransferRepository } from '../persistence/repositories/TranferRepository';
 import { WalletService } from './WalletService';
 
 @Injectable()
@@ -12,9 +12,10 @@ export class TransferService {
   constructor(
     private readonly walletService: WalletService,
     private readonly userService: UserService,
-    private readonly transferRepository: TransferRepository,
     private readonly emailClientIntegration: EmailClientIntegration,
     private readonly authorizationTransactionIntegration: AuthorizationTransactionIntegration,
+    @Inject('TransferRepository')
+    private readonly transferRepository: TransferRepository,
   ) {}
 
   async create(data: CreateTransferDto): Promise<Transfer> {

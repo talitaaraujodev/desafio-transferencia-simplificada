@@ -1,31 +1,55 @@
+import { PermissionService } from './../services/PermissionService';
 import { Module } from '@nestjs/common';
-import { PermissionRoleRepository } from '../persistence/repositories/PermissionRoleRepository';
-import { PermissionRepository } from '../persistence/repositories/PermissionRepository';
+import { PermissionRoleRepositoryImp } from '../persistence/repositories/implementations/PermissionRoleRepositoryImp';
+import { PermissionRepositoryImp } from '../persistence/repositories/implementations/PermissionRepositoryImp';
 import { RoleService } from '../services/RoleService';
-import { WalletRepository } from '../persistence/repositories/WalletRepository';
-import { WalletTypeRepository } from '../persistence/repositories/WalletTypeRepository';
-import { UserRepository } from '../persistence/repositories/UserRepository';
+import { WalletRepositoryImp } from '../persistence/repositories/implementations/WalletRepositoryImp';
+import { WalletTypeRepositoryImp } from '../persistence/repositories/implementations/WalletTypeRepositoryImp';
+import { UserRepositoryImp } from '../persistence/repositories/implementations/UserRepositoryImp';
 import { WalletTypeService } from '../services/WalletTypeService';
 import { UserService } from '../services/UserService';
 import { WalletController } from '../controllers/WalletController';
 import { PrismaService } from '../config/database/PrismaService';
 import { WalletService } from '../services/WalletService';
-import { UserRoleRepository } from '../persistence/repositories/UserRoleRepository';
-import { RoleRepository } from '../persistence/repositories/RoleRepository';
+import { UserRoleRepositoryImp } from '../persistence/repositories/implementations/UserRoleRepositoryImp';
+import { RoleRepositoryImp } from '../persistence/repositories/implementations/RoleRepositoryImp';
 @Module({
   controllers: [WalletController],
   providers: [
+    {
+      provide: 'UserRepository',
+      useClass: UserRepositoryImp,
+    },
+    {
+      provide: 'UserRoleRepository',
+      useClass: UserRoleRepositoryImp,
+    },
+
+    {
+      provide: 'WalletRepository',
+      useClass: WalletRepositoryImp,
+    },
+    {
+      provide: 'WalletTypeRepository',
+      useClass: WalletTypeRepositoryImp,
+    },
+    {
+      provide: 'PermissionRepository',
+      useClass: PermissionRepositoryImp,
+    },
+    {
+      provide: 'RoleRepository',
+      useClass: RoleRepositoryImp,
+    },
+    {
+      provide: 'PermissionRoleRepository',
+      useClass: PermissionRoleRepositoryImp,
+    },
     WalletService,
-    WalletRepository,
     UserService,
+    PermissionService,
     RoleService,
     WalletTypeService,
-    WalletTypeRepository,
-    UserRepository,
-    UserRoleRepository,
-    RoleRepository,
-    PermissionRepository,
-    PermissionRoleRepository,
     PrismaService,
   ],
 })

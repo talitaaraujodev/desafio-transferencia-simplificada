@@ -1,9 +1,10 @@
-import { Transfer } from '../entities/TransferEntity';
+import { TransferRepository } from '../TranferRepository';
+import { Transfer } from '../../entities/TransferEntity';
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '../../config/database/PrismaService';
+import { PrismaService } from '../../../config/database/PrismaService';
 
 @Injectable()
-export class TransferRepository {
+export class TransferRepositoryImp implements TransferRepository {
   constructor(private readonly prisma: PrismaService) {}
   async create(entity: Transfer): Promise<Transfer> {
     return await this.prisma.transferencias.create({

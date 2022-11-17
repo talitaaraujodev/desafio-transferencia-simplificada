@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, Inject } from '@nestjs/common';
 import { RoleService } from './RoleService';
 import { CreateUserRoleDto } from '../dto/CreateUserRoleDto';
 import { UserRoleRepository } from '../persistence/repositories/UserRoleRepository';
@@ -9,8 +9,10 @@ import { CreateUserDto } from '../dto/CreateUserDto';
 @Injectable()
 export class UserService {
   constructor(
-    private readonly userRepository: UserRepository,
     private readonly roleService: RoleService,
+    @Inject('UserRepository')
+    private readonly userRepository: UserRepository,
+    @Inject('UserRoleRepository')
     private readonly userRoleRepository: UserRoleRepository,
   ) {}
   async create(data: CreateUserRoleDto): Promise<User> {

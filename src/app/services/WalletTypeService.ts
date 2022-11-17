@@ -1,11 +1,14 @@
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus, Inject } from '@nestjs/common';
 import { CreateWalletTypeDto } from '../dto/CreateWalletTypeDto';
 import { WalletType } from '../persistence/entities/WalletTypeEntity';
 import { WalletTypeRepository } from '../persistence/repositories/WalletTypeRepository';
 
 @Injectable()
 export class WalletTypeService {
-  constructor(private readonly walletTypeService: WalletTypeRepository) {}
+  constructor(
+    @Inject('WalletTypeRepository')
+    private readonly walletTypeService: WalletTypeRepository,
+  ) {}
 
   async create(data: CreateWalletTypeDto): Promise<WalletType> {
     return await this.walletTypeService.create(data);

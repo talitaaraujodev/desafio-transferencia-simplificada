@@ -1,5 +1,5 @@
 import { CreateWalletTypeDto } from '../../src/app/dto/CreateWalletTypeDto';
-import { TipoCarteiraRepository } from '../../src/app/persistence/repositories/WalletTypeRepository';
+import { TipoCarteiraRepository } from '../../src/app/persistence/repositories/implementations/WalletTypeRepositoryImp';
 import { Test, TestingModule } from '@nestjs/testing';
 import { WalletType } from '../../src/app/persistence/entities/WalletTypeEntity';
 import { WalletTypeService } from '../../src/app/services/WalletTypeService';

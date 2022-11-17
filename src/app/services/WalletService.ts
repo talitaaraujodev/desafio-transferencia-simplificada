@@ -1,5 +1,5 @@
+import { Injectable, HttpException, HttpStatus, Inject } from '@nestjs/common';
 import { UpdateWalletDto } from '../dto/UpdateWalletDto';
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { WalletTypeService } from './WalletTypeService';
 import { Wallet } from '../persistence/entities/WalletEntity';
 import { CreateWalletDto } from '../dto/CreateWalletDto';
@@ -9,6 +9,7 @@ import { UserService } from './UserService';
 @Injectable()
 export class WalletService {
   constructor(
+    @Inject('WalletRepository')
     private readonly walletRepository: WalletRepository,
     private readonly userService: UserService,
     private readonly walletTypeService: WalletTypeService,

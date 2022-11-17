@@ -1,11 +1,18 @@
 import { Module } from '@nestjs/common';
-import { UserRepository } from '../persistence/repositories/UserRepository';
+import { UserRepositoryImp } from '../persistence/repositories/implementations/UserRepositoryImp';
 import { AuthController } from '../controllers/AuthController';
 import { AuthService } from '../services/AuthService';
 import { PrismaService } from '../config/database/PrismaService';
 
 @Module({
   controllers: [AuthController],
-  providers: [AuthService, UserRepository, PrismaService],
+  providers: [
+    {
+      provide: 'UserRepository',
+      useClass: UserRepositoryImp,
+    },
+    AuthService,
+    PrismaService,
+  ],
 })
 export class AuthModule {}
