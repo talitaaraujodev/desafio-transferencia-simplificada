@@ -11,8 +11,8 @@ import {
   Body,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { UpdateCarteiraDto } from '../dto/updateCarteira.dto';
-import { CreateCarteiraDto } from '../dto/createCarteira.dto';
+import { UpdateWalletDto } from '../dto/UpdateWalletDto';
+import { CreateWalletDto } from '../dto/CreateWalletDto';
 import { Carteira } from '../persistence/entities/carteira.entity';
 import { WalletService } from '../services/WalletService';
 
@@ -30,7 +30,7 @@ export class WalletController {
   @Post()
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Adicionar uma nova carteira' })
-  async create(@Body() body: CreateCarteiraDto): Promise<Carteira> {
+  async create(@Body() body: CreateWalletDto): Promise<Carteira> {
     return await this.walletService.create(body);
   }
   @Put(':id')
@@ -41,7 +41,7 @@ export class WalletController {
       new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
     )
     id: number,
-    @Body() body: UpdateCarteiraDto,
+    @Body() body: UpdateWalletDto,
   ): Promise<Carteira> {
     return await this.walletService.update(id, body);
   }

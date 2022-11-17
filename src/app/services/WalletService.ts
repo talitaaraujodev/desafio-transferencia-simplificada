@@ -1,8 +1,8 @@
-import { UpdateCarteiraDto } from '../dto/updateCarteira.dto';
+import { UpdateWalletDto } from '../dto/UpdateWalletDto';
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { WalletTypeService } from './WalletTypeService';
 import { Carteira } from '../persistence/entities/carteira.entity';
-import { CreateCarteiraDto } from '../dto/createCarteira.dto';
+import { CreateWalletDto } from '../dto/CreateWalletDto';
 import { CarteiraRepository } from '../persistence/repositories/carteira/carteira.repository';
 import { UserService } from './UserService';
 
@@ -13,7 +13,7 @@ export class WalletService {
     private readonly userService: UserService,
     private readonly walletTypeService: WalletTypeService,
   ) {}
-  async create(data: CreateCarteiraDto): Promise<Carteira> {
+  async create(data: CreateWalletDto): Promise<Carteira> {
     await this.userService.findOne(data.usuario_id);
     await this.walletTypeService.findOne(data.tipo_id);
     return await this.walletRepository.create(data);
@@ -36,7 +36,7 @@ export class WalletService {
     await this.findOne(id);
     return await this.walletRepository.delete(id);
   }
-  async update(id: number, data: UpdateCarteiraDto): Promise<Carteira> {
+  async update(id: number, data: UpdateWalletDto): Promise<Carteira> {
     await this.userService.findOne(data.usuario_id);
     await this.walletTypeService.findOne(data.tipo_id);
     await this.findOne(id);
@@ -55,7 +55,7 @@ export class WalletService {
   async decreaseSaldo(id: number, value: number): Promise<Carteira> {
     const wallet = await this.findOne(id);
     const saldoAtual = wallet.saldo - value;
-    const data: UpdateCarteiraDto = {
+    const data: UpdateWalletDto = {
       saldo: saldoAtual,
       usuario_id: wallet.usuario_id,
       tipo_id: wallet.tipo_id,
@@ -66,7 +66,7 @@ export class WalletService {
   async increaseSaldo(id: number, value: number): Promise<Carteira> {
     const wallet = await this.findOne(id);
     const saldoAtual = wallet.saldo + value;
-    const data: UpdateCarteiraDto = {
+    const data: UpdateWalletDto = {
       saldo: saldoAtual,
       usuario_id: wallet.usuario_id,
       tipo_id: wallet.tipo_id,

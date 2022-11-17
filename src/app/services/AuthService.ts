@@ -2,9 +2,9 @@ import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { compareSync } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
 import { UsuarioRepository } from '../persistence/repositories/usuario/usuario.repository';
-import { PayloadDto } from '../dto/payload.dto';
-import { LoginDto } from '../dto/login.dto';
-import { TokenDto } from '../dto/token.dto';
+import { PayloadDto } from '../dto/PayloadDto';
+import { LoginDto } from '../dto/LoginDto';
+import { TokenDto } from '../dto/TokenDto';
 import { Usuario } from '../persistence/entities/usuario.entity';
 import env from '../config/env';
 

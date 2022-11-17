@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { CreateRoleDto } from './createRole.dto';
+import { CreateRoleDto } from './CreateRoleDto';
 import { IsNotEmpty } from 'class-validator';
 
 export class CreateRolePermissionDto extends CreateRoleDto {

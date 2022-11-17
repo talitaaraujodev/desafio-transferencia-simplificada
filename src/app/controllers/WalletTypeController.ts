@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { WalletTypeService } from '../services/WalletTypeService';
-import { CreateTipoCarteiraDto } from '../dto/createTipoCarteira.dto';
+import { CreateWalletTypeDto } from '../dto/CreateWalletTypeDto';
 
 @Controller({ path: 'tipoCarteira' })
 @ApiTags('Tipos de Carteira')
@@ -24,7 +24,7 @@ export class WalletTypeController {
   @Post()
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Adicionar uma novo tipo de carteira' })
-  async create(@Body() body: CreateTipoCarteiraDto): Promise<TipoCarteira> {
+  async create(@Body() body: CreateWalletTypeDto): Promise<TipoCarteira> {
     return await this.walletTypeService.create(body);
   }
 }

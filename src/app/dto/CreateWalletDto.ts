@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty } from 'class-validator';
 
-export class CreateCarteiraDto {
+export class CreateWalletDto {
   @IsNotEmpty({ message: 'Saldo é obrigatório' })
   @ApiProperty()
   saldo: number;

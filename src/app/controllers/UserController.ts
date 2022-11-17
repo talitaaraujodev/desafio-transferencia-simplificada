@@ -11,7 +11,7 @@ import {
   ParseIntPipe,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { CreateUsuarioRoleDto } from '../dto/createUsuarioRole.dto';
+import { CreateUserRoleDto } from '../dto/CreateUserRoleDto';
 import { UserService } from '../services/UserService';
 
 @Controller({ path: 'usuarios' })
@@ -27,7 +27,7 @@ export class UserController {
   @Post()
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Adicionar uma novo usuário' })
-  async create(@Body() body: CreateUsuarioRoleDto): Promise<Usuario> {
+  async create(@Body() body: CreateUserRoleDto): Promise<Usuario> {
     return await this.userService.create(body);
   }
   @ApiBearerAuth('access-token')

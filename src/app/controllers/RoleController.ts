@@ -8,7 +8,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { CreateRolePermissionDto } from '../dto/createRolePermission.dto';
+import { CreateRolePermissionDto } from '../dto/CreateRolePermissionDto';
 import { RoleService } from '../services/RoleService';
 
 @Controller({ path: 'roles' })

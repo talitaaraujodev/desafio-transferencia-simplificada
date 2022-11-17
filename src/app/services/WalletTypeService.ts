@@ -1,5 +1,5 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
-import { CreateTipoCarteiraDto } from '../dto/createTipoCarteira.dto';
+import { CreateWalletTypeDto } from '../dto/CreateWalletTypeDto';
 import { TipoCarteira } from '../persistence/entities/tipoCarteira.entity';
 import { TipoCarteiraRepository } from '../persistence/repositories/tipoCarteira/tipoCarteira.repository';
 
@@ -7,7 +7,7 @@ import { TipoCarteiraRepository } from '../persistence/repositories/tipoCarteira
 export class WalletTypeService {
   constructor(private readonly walletTypeService: TipoCarteiraRepository) {}
 
-  async create(data: CreateTipoCarteiraDto): Promise<TipoCarteira> {
+  async create(data: CreateWalletTypeDto): Promise<TipoCarteira> {
     return await this.walletTypeService.create(data);
   }
   async findAll(): Promise<TipoCarteira[]> {

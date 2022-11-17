@@ -1,8 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNumber } from 'class-validator';
-import { CreateUsuarioDto } from './createUsuario.dto';
+import { CreateUserDto } from './CreateUserDto';
 
-export class CreateUsuarioRoleDto extends CreateUsuarioDto {
+export class CreateUserRoleDto extends CreateUserDto {
   @ApiProperty()
   @IsNumber({}, { each: true })
   roles: number[];

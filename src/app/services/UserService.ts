@@ -1,10 +1,10 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { RoleService } from './RoleService';
-import { CreateUsuarioRoleDto } from '../dto/createUsuarioRole.dto';
+import { CreateUserRoleDto } from '../dto/CreateUserRoleDto';
 import { UsuarioRoleRepository } from '../persistence/repositories/usuarioRole/usuarioRole.repository';
 import { UsuarioRepository } from '../persistence/repositories/usuario/usuario.repository';
 import { Usuario } from '../persistence/entities/usuario.entity';
-import { CreateUsuarioDto } from '../dto/createUsuario.dto';
+import { CreateUserDto } from '../dto/CreateUserDto';
 
 @Injectable()
 export class UserService {
@@ -13,12 +13,12 @@ export class UserService {
     private readonly roleService: RoleService,
     private readonly userRoleRepository: UsuarioRoleRepository,
   ) {}
-  async create(data: CreateUsuarioRoleDto): Promise<Usuario> {
+  async create(data: CreateUserRoleDto): Promise<Usuario> {
     await this.verifyExistsEmail(data.email);
     await this.verifyExistsCpfCnpj(data.cpf_cnpj);
     await this.roleService.verifyExistsRoles(data.roles);
 
-    const user: CreateUsuarioDto = {
+    const user: CreateUserDto = {
       name: data.name,
       cpf_cnpj: data.cpf_cnpj,
       email: data.email,

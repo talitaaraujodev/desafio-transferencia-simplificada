@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsOptional } from 'class-validator';
 
-export class CreateTransferenciaDto {
+export class CreateTransferDto {
   @IsNotEmpty({ message: 'Valor é obrigatório' })
   @ApiProperty()
   value: number;

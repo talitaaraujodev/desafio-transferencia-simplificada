@@ -1,8 +1,8 @@
-import { TokenDto } from '../dto/token.dto';
+import { TokenDto } from '../dto/TokenDto';
 import { Post, Controller, Body } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { AuthService } from '../services/AuthService';
-import { LoginDto } from '../dto/login.dto';
+import { LoginDto } from '../dto/LoginDto';
 
 @Controller({ path: 'login' })
 @ApiTags('Login')

@@ -9,7 +9,7 @@ import {
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Permission } from '../persistence/entities/permission.entity';
 import { PermissionService } from '../services/PermissionService';
-import { CreatePermissionDto } from '../dto/createPermission.dto';
+import { CreatePermissionDto } from '../dto/CreatePermissionDto';
 
 @Controller({ path: 'permissions' })
 @ApiTags('Permissions')

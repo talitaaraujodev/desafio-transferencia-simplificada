@@ -1,4 +1,4 @@
-import { CreateTipoCarteiraDto } from '../../src/app/dto/createTipoCarteira.dto';
+import { CreateTipoCarteiraDto } from '../../src/app/dto/CreateWalletTypeDto';
 import { TipoCarteiraRepository } from '../../src/app/persistence/repositories/tipoCarteira/tipoCarteira.repository';
 import { Test, TestingModule } from '@nestjs/testing';
 import { TipoCarteira } from '../../src/app/persistence/entities/tipoCarteira.entity';

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { AuthorizationTransactionIntegration } from '../persistence/integrations/authorizationTransaction.integration';
 import { EmailClientIntegration } from '../persistence/integrations/emailClient.integration';
-import { CreateTransferenciaDto } from '../dto/createTransferencia.dto';
+import { CreateTransferDto } from '../dto/CreateTranferDto';
 import { UserService } from './UserService';
 import { Transferencia } from '../persistence/entities/transferencia.entity';
 import { TransferenciaRepository } from '../persistence/repositories/transferencia/transferencia.repository';
@@ -17,7 +17,7 @@ export class TransferService {
     private readonly authorizationTransactionIntegration: AuthorizationTransactionIntegration,
   ) {}
 
-  async create(data: CreateTransferenciaDto): Promise<Transferencia> {
+  async create(data: CreateTransferDto): Promise<Transferencia> {
     await this.walletService.findOne(data.carteira_origem);
     await this.walletService.findOne(data.carteira_destinatario);
     await this.userService.findOne(data.usuario_origem);
