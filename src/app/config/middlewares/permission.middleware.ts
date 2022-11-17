@@ -7,14 +7,14 @@ import {
 } from '@nestjs/common';
 import { NextFunction, Request, Response } from 'express';
 import { decode } from 'jsonwebtoken';
-import { UsuarioService } from '../../services/usuario/usuario.service';
+import { UserService } from '../../services/UserService';
 
 export function PermissionMiddlewareCreator(
   roles: string[],
 ): Type<NestMiddleware> {
   @Injectable()
   class PermissionMiddleware implements NestMiddleware {
-    constructor(private readonly usuarioService: UsuarioService) {}
+    constructor(private readonly usuarioService: UserService) {}
     async use(req: Request, res: Response, next: NextFunction) {
       const authHeader = req.headers.authorization || '';
 

@@ -11,13 +11,13 @@ import {
   ParseIntPipe,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { CreateUsuarioRoleDto } from '../persistence/dto/createUsuarioRole.dto';
-import { UsuarioService } from '../services/usuario/usuario.service';
+import { CreateUsuarioRoleDto } from '../dto/createUsuarioRole.dto';
+import { UserService } from '../services/UserService';
 
 @Controller({ path: 'usuarios' })
 @ApiTags('Usuarios')
 export class UserController {
-  constructor(private readonly userService: UsuarioService) {}
+  constructor(private readonly userService: UserService) {}
   @ApiBearerAuth('access-token')
   @Get()
   @ApiOperation({ summary: 'Listar todas os usuários' })

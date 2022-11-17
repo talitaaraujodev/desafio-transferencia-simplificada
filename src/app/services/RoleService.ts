@@ -1,11 +1,11 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { CreateRolePermissionDto } from '../../persistence/dto/createRolePermission.dto';
-import { CreateRoleDto } from '../../persistence/dto/createRole.dto';
-import { Permission } from './../../persistence/entities/permission.entity';
-import { Role } from './../../persistence/entities/role.entity';
-import { PermissionRepository } from '../../persistence/repositories/permission/permission.repository';
-import { RoleRepository } from '../../persistence/repositories/role/role.repository';
-import { PermissionRoleRepository } from '../../persistence/repositories/permissionRole/permissionRole.repository';
+import { CreateRolePermissionDto } from '../dto/createRolePermission.dto';
+import { CreateRoleDto } from '../dto/createRole.dto';
+import { Permission } from '../persistence/entities/permission.entity';
+import { Role } from '../persistence/entities/role.entity';
+import { PermissionRepository } from '../persistence/repositories/permission/permission.repository';
+import { RoleRepository } from '../persistence/repositories/role/role.repository';
+import { PermissionRoleRepository } from '../persistence/repositories/permissionRole/permissionRole.repository';
 
 @Injectable()
 export class RoleService {

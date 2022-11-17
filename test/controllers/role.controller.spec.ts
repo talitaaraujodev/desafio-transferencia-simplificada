@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CreateRolePermissionDto } from '../../src/app/persistence/dto/createRolePermission.dto';
+import { CreateRolePermissionDto } from '../../src/app/dto/createRolePermission.dto';
 import { Role } from '../../src/app/persistence/entities/role.entity';
-import { RoleService } from '../../src/app/services/role/role.service';
+import { RoleService } from '../../src/app/services/RoleService';
 import { RoleController } from '../../src/app/controllers/RoleController';
 
 const mockSut = () => {

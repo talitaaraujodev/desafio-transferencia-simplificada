@@ -1,8 +1,8 @@
-import { CreateTipoCarteiraDto } from './../../persistence/dto/createTipoCarteira.dto';
-import { TipoCarteiraRepository } from './../../persistence/repositories/tipoCarteira/tipoCarteira.repository';
+import { CreateTipoCarteiraDto } from '../../src/app/dto/createTipoCarteira.dto';
+import { TipoCarteiraRepository } from '../../src/app/persistence/repositories/tipoCarteira/tipoCarteira.repository';
 import { Test, TestingModule } from '@nestjs/testing';
-import { TipoCarteira } from '../../persistence/entities/tipoCarteira.entity';
-import { TipoCarteiraService } from './tipoCarteira.service';
+import { TipoCarteira } from '../../src/app/persistence/entities/tipoCarteira.entity';
+import { TipoCarteiraService } from '../../src/app/services/WalletTypeService';
 
 const mockSut = () => {
   const tiposCarteiras: TipoCarteira[] = [

@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CreateTipoCarteiraDto } from '../../src/app/persistence/dto/createTipoCarteira.dto';
+import { CreateTipoCarteiraDto } from '../../src/app/dto/createTipoCarteira.dto';
 import { TipoCarteira } from '../../src/app/persistence/entities/tipoCarteira.entity';
-import { TipoCarteiraService } from '../../src/app/services/tipoCarteira/tipoCarteira.service';
+import { TipoCarteiraService } from '../../src/app/services/WalletTypeService';
 import { TipoCarteiraController } from '../../src/app/controllers/WalletTypeController';
 
 const mockSut = () => {

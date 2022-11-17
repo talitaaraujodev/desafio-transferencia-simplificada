@@ -8,14 +8,14 @@ import {
   Post,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { TipoCarteiraService } from '../services/tipoCarteira/tipoCarteira.service';
-import { CreateTipoCarteiraDto } from '../persistence/dto/createTipoCarteira.dto';
+import { WalletTypeService } from '../services/WalletTypeService';
+import { CreateTipoCarteiraDto } from '../dto/createTipoCarteira.dto';
 
 @Controller({ path: 'tipoCarteira' })
 @ApiTags('Tipos de Carteira')
 @ApiBearerAuth('access-token')
 export class WalletTypeController {
-  constructor(private readonly walletTypeService: TipoCarteiraService) {}
+  constructor(private readonly walletTypeService: WalletTypeService) {}
   @Get()
   @ApiOperation({ summary: 'Listar todas os tipos de carteira' })
   async findAll(): Promise<TipoCarteira[]> {

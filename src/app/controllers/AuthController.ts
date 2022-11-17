@@ -1,8 +1,8 @@
-import { TokenDto } from '../persistence/dto/token.dto';
+import { TokenDto } from '../dto/token.dto';
 import { Post, Controller, Body } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { AuthService } from '../services/auth/auth.service';
-import { LoginDto } from '../persistence/dto/login.dto';
+import { AuthService } from '../services/AuthService';
+import { LoginDto } from '../dto/login.dto';
 
 @Controller({ path: 'login' })
 @ApiTags('Login')

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { TipoCarteira } from './../../entities/tipoCarteira.entity';
+import { TipoCarteira } from '../../entities/tipoCarteira.entity';
 import { PrismaService } from '../../../config/database/PrismaService';
 
 @Injectable()

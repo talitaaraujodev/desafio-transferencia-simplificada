@@ -1,17 +1,17 @@
-import { RoleService } from './../role/role.service';
-import { CreateUsuarioRoleDto } from './../../persistence/dto/createUsuarioRole.dto';
-import { UsuarioRoleRepository } from './../../persistence/repositories/usuarioRole/usuarioRole.repository';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { UsuarioRepository } from '../../persistence/repositories/usuario/usuario.repository';
-import { Usuario } from '../../persistence/entities/usuario.entity';
-import { CreateUsuarioDto } from '../../persistence/dto/createUsuario.dto';
+import { RoleService } from './RoleService';
+import { CreateUsuarioRoleDto } from '../dto/createUsuarioRole.dto';
+import { UsuarioRoleRepository } from '../persistence/repositories/usuarioRole/usuarioRole.repository';
+import { UsuarioRepository } from '../persistence/repositories/usuario/usuario.repository';
+import { Usuario } from '../persistence/entities/usuario.entity';
+import { CreateUsuarioDto } from '../dto/createUsuario.dto';
 
 @Injectable()
-export class UsuarioService {
+export class UserService {
   constructor(
-    private readonly usuarioRepository: UsuarioRepository,
+    private readonly userRepository: UsuarioRepository,
     private readonly roleService: RoleService,
-    private readonly usuarioRoleRepository: UsuarioRoleRepository,
+    private readonly userRoleRepository: UsuarioRoleRepository,
   ) {}
   async create(data: CreateUsuarioRoleDto): Promise<Usuario> {
     await this.verifyExistsEmail(data.email);
@@ -24,9 +24,9 @@ export class UsuarioService {
       email: data.email,
       password: data.password,
     };
-    const createUser = await this.usuarioRepository.create(user);
-    const findLastUser = await this.usuarioRepository.findByLastId();
-    const createUsuarioRole = this.usuarioRoleRepository.create(
+    const createUser = await this.userRepository.create(user);
+    const findLastUser = await this.userRepository.findByLastId();
+    const createUsuarioRole = this.userRoleRepository.create(
       findLastUser.id,
       data.roles,
     );
@@ -46,31 +46,31 @@ export class UsuarioService {
     return result;
   }
   async verifyExistsEmail(email: string): Promise<Usuario> {
-    const emailExists = await this.usuarioRepository.findByEmail(email);
+    const emailExists = await this.userRepository.findByEmail(email);
     if (emailExists) {
       throw new HttpException(
         'Usuário já existente existente por e-mail',
         HttpStatus.CONFLICT,
       );
     }
-    return await this.usuarioRepository.findByEmail(email);
+    return await this.userRepository.findByEmail(email);
   }
   async verifyExistsCpfCnpj(cpf_cnpj: string): Promise<Usuario> {
-    const cpfCnpjExists = await this.usuarioRepository.findByCpfCnpj(cpf_cnpj);
+    const cpfCnpjExists = await this.userRepository.findByCpfCnpj(cpf_cnpj);
     if (cpfCnpjExists) {
       throw new HttpException(
         'Usuário já existente por Cpf/Cnpj ',
         HttpStatus.CONFLICT,
       );
     }
-    return await this.usuarioRepository.findByCpfCnpj(cpf_cnpj);
+    return await this.userRepository.findByCpfCnpj(cpf_cnpj);
   }
   async findAll(): Promise<Usuario[]> {
-    return await this.usuarioRepository.findAll();
+    return await this.userRepository.findAll();
   }
   async findOne(id: number): Promise<Usuario> {
     try {
-      const user = await this.usuarioRepository.findOne(id);
+      const user = await this.userRepository.findOne(id);
       delete user.password;
       return user;
     } catch (error) {
@@ -81,8 +81,7 @@ export class UsuarioService {
     }
   }
   async delete(id: number): Promise<Usuario> {
-    console.log(id);
     await this.findOne(id);
-    return await this.usuarioRepository.delete(id);
+    return await this.userRepository.delete(id);
   }
 }

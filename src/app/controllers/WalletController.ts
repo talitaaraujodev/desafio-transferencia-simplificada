@@ -11,16 +11,16 @@ import {
   Body,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { UpdateCarteiraDto } from '../persistence/dto/updateCarteira.dto';
-import { CreateCarteiraDto } from '../persistence/dto/createCarteira.dto';
+import { UpdateCarteiraDto } from '../dto/updateCarteira.dto';
+import { CreateCarteiraDto } from '../dto/createCarteira.dto';
 import { Carteira } from '../persistence/entities/carteira.entity';
-import { CarteiraService } from '../services/carteira/carteira.service';
+import { WalletService } from '../services/WalletService';
 
 @Controller({ path: 'carteiras' })
 @ApiTags('Carteiras')
 @ApiBearerAuth('access-token')
 export class WalletController {
-  constructor(private readonly walletService: CarteiraService) {}
+  constructor(private readonly walletService: WalletService) {}
 
   @Get()
   @ApiOperation({ summary: 'Listar todas as carteiras' })

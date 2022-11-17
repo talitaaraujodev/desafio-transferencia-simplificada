@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Permission } from './../../entities/permission.entity';
+import { Permission } from '../../entities/permission.entity';
 import { PrismaService } from '../../../config/database/PrismaService';
 
 @Injectable()

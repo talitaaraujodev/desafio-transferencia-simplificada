@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CreateUsuarioRoleDto } from '../../src/app/persistence/dto/createUsuarioRole.dto';
+import { CreateUsuarioRoleDto } from '../../src/app/dto/createUsuarioRole.dto';
 import { Usuario } from '../../src/app/persistence/entities/usuario.entity';
 import { UsuarioController } from '../../src/app/controllers/UserController';
-import { UsuarioService } from '../../src/app/services/usuario/usuario.service';
+import { UsuarioService } from '../../src/app/services/UserService';
 
 const mockSut = () => {
   const usuarios: Usuario[] = [

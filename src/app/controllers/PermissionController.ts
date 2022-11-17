@@ -8,8 +8,8 @@ import {
 } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Permission } from '../persistence/entities/permission.entity';
-import { PermissionService } from '../services/permission/permission.service';
-import { CreatePermissionDto } from '../persistence/dto/createPermission.dto';
+import { PermissionService } from '../services/PermissionService';
+import { CreatePermissionDto } from '../dto/createPermission.dto';
 
 @Controller({ path: 'permissions' })
 @ApiTags('Permissions')

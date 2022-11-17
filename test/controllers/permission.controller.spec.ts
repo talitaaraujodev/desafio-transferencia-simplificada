@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CreatePermissionDto } from '../../src/app/persistence/dto/createPermission.dto';
-import { PermissionService } from '../../src/app/services/permission/permission.service';
+import { CreatePermissionDto } from '../../src/app/dto/createPermission.dto';
+import { PermissionService } from '../../src/app/services/PermissionService';
 import { Permission } from '../../src/app/persistence/entities/permission.entity';
 import { PermissionController } from '../../src/app/controllers/PermissionController';
 

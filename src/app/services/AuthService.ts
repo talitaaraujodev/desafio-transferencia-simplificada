@@ -1,12 +1,12 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { compareSync } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
-import { UsuarioRepository } from './../../persistence/repositories/usuario/usuario.repository';
-import { PayloadDto } from './../../persistence/dto/payload.dto';
-import { LoginDto } from '../../persistence/dto/login.dto';
-import { TokenDto } from '../../persistence/dto/token.dto';
-import { Usuario } from '../../persistence/entities/usuario.entity';
-import env from '../../config/env';
+import { UsuarioRepository } from '../persistence/repositories/usuario/usuario.repository';
+import { PayloadDto } from '../dto/payload.dto';
+import { LoginDto } from '../dto/login.dto';
+import { TokenDto } from '../dto/token.dto';
+import { Usuario } from '../persistence/entities/usuario.entity';
+import env from '../config/env';
 
 @Injectable()
 export class AuthService {

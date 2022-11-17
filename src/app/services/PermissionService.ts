@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { Permission } from './../../persistence/entities/permission.entity';
-import { CreatePermissionDto } from './../../persistence/dto/createPermission.dto';
-import { PermissionRepository } from './../../persistence/repositories/permission/permission.repository';
+import { Permission } from '../persistence/entities/permission.entity';
+import { CreatePermissionDto } from '../dto/createPermission.dto';
+import { PermissionRepository } from '../persistence/repositories/permission/permission.repository';
 
 @Injectable()
 export class PermissionService {

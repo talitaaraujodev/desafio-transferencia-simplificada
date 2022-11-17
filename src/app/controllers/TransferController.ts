@@ -1,14 +1,14 @@
 import { Transferencia } from '../persistence/entities/transferencia.entity';
-import { CreateTransferenciaDto } from '../persistence/dto/createTransferencia.dto';
+import { CreateTransferenciaDto } from '../dto/createTransferencia.dto';
 import { Controller, HttpCode, HttpStatus, Body, Post } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags, ApiOperation } from '@nestjs/swagger';
-import { TransferenciaService } from '../services/transferencia/transferencia.service';
+import { TransferService } from '../services/TranferService';
 
 @Controller('transferencias')
 @ApiTags('Transferencias')
 @ApiBearerAuth('access-token')
 export class TransferController {
-  constructor(private readonly transferService: TransferenciaService) {}
+  constructor(private readonly transferService: TransferService) {}
 
   @Post()
   @HttpCode(HttpStatus.CREATED)

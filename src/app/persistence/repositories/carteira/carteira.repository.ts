@@ -1,4 +1,4 @@
-import { Carteira } from './../../entities/carteira.entity';
+import { Carteira } from '../../entities/carteira.entity';
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../../config/database/PrismaService';
 
