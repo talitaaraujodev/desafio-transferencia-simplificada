@@ -20,4 +20,3 @@ export class CreateUserDto {
   @ApiProperty({ example: '123456' })
   password: string;
 }
- 

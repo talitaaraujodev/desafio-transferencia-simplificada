@@ -4,7 +4,7 @@ import { IsNotEmpty } from 'class-validator';
 export class CreateWalletDto {
   @IsNotEmpty({ message: 'Saldo é obrigatório' })
   @ApiProperty({ example: 100 })
-  saldo: number;
+  balance: number;
   @IsNotEmpty({ message: 'Usuário é obrigatório' })
   @ApiProperty({ example: 1 })
   user_id: number;

@@ -15,7 +15,7 @@ CREATE TABLE `users` (
 CREATE TABLE `permissions` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(191) NOT NULL,
-    `descricao` VARCHAR(191) NOT NULL,
+    `description` VARCHAR(191) NOT NULL,
 
     UNIQUE INDEX `permissions_name_key`(`name`),
     PRIMARY KEY (`id`)
@@ -25,7 +25,7 @@ CREATE TABLE `permissions` (
 CREATE TABLE `roles` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(191) NOT NULL,
-    `descricao` VARCHAR(191) NOT NULL,
+    `description` VARCHAR(191) NOT NULL,
 
     UNIQUE INDEX `roles_name_key`(`name`),
     PRIMARY KEY (`id`)
@@ -53,7 +53,7 @@ CREATE TABLE `users_roles` (
 CREATE TABLE `wallet_type` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(191) NOT NULL,
-    `descricao` VARCHAR(191) NOT NULL,
+    `description` VARCHAR(191) NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -61,7 +61,7 @@ CREATE TABLE `wallet_type` (
 -- CreateTable
 CREATE TABLE `wallets` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `saldo` DOUBLE NOT NULL DEFAULT 0.00,
+    `balance` DOUBLE NOT NULL DEFAULT 0.00,
     `user_id` INTEGER NOT NULL,
     `tipo_id` INTEGER NOT NULL,
 

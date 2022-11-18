@@ -24,7 +24,7 @@ export class RoleService {
 
     const role: CreateRoleDto = {
       name: data.name,
-      descricao: data.descricao,
+      description: data.description,
     };
     const createRole = await this.roleRepository.create(role);
     const findLastRole = await this.roleRepository.findByLastId();
@@ -38,7 +38,7 @@ export class RoleService {
         return {
           id: createRole.id,
           nome: createRole.name,
-          descricao: createRole.descricao,
+          description: createRole.description,
           permissions: data.permissions,
         };
       })

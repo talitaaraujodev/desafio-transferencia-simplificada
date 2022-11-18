@@ -11,14 +11,13 @@ import { Permission } from '../persistence/entities/PermissionEntity';
 import { PermissionService } from '../services/PermissionService';
 import { CreatePermissionDto } from '../dto/CreatePermissionDto';
 
-@Controller({ path: 'permission' })
+@Controller({ path: 'permissions' })
 @ApiTags('Permissions')
 export class PermissionController {
   constructor(private readonly permissionService: PermissionService) {}
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  @ApiOperation({ summary: 'Adicionar uma nova permissão' })
   async create(@Body() body: CreatePermissionDto): Promise<Permission> {
     return await this.permissionService.create(body);
   }

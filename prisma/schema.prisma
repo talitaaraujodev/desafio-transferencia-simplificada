@@ -15,7 +15,7 @@ model Users {
   password                    String
   transfers_user_origem       Transfers[]  @relation("transfers_user_origem")
   transfers_user_destinatario Transfers[]  @relation("transfers_user_destinatario")
-  UsersRoles               UsersRoles[]
+  UsersRoles                  UsersRoles[]
 
   @@map("users")
 }
@@ -23,7 +23,7 @@ model Users {
 model Permissions {
   id               Int                @id @default(autoincrement())
   name             String             @unique
-  descricao        String
+  description      String
   PermissionsRoles PermissionsRoles[]
 
   @@map("permissions")
@@ -32,9 +32,9 @@ model Permissions {
 model Roles {
   id               Int                @id @default(autoincrement())
   name             String             @unique
-  descricao        String
+  description      String
   PermissionsRoles PermissionsRoles[]
-  UsersRoles    UsersRoles[]
+  UsersRoles       UsersRoles[]
 
   @@map("roles")
 }
@@ -60,17 +60,17 @@ model UsersRoles {
 }
 
 model WalletType {
-  id        Int       @id @default(autoincrement())
-  name      String
-  descricao String
-  Wallets   Wallets[]
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String
+  Wallets     Wallets[]
 
   @@map("wallet_type")
 }
 
 model Wallets {
   id                            Int         @id @default(autoincrement())
-  saldo                         Float       @default(0.00)
+  balance                        Float       @default(0.00)
   user_id                       Int
   tipo_id                       Int
   WalletType                    WalletType  @relation(fields: [tipo_id], references: [id])

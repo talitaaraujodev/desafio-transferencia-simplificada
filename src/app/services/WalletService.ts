@@ -43,9 +43,9 @@ export class WalletService {
     await this.findOne(id);
     return await this.walletRepository.update(id, data);
   }
-  async verifySaldo(id: number, value: number): Promise<Wallet> {
+  async verifyBalance(id: number, value: number): Promise<Wallet> {
     const wallet: Wallet = await this.findOne(id);
-    if (wallet.saldo < value) {
+    if (wallet.balance < value) {
       throw new HttpException(
         'Saldo para a trasferência insuficiente',
         HttpStatus.BAD_REQUEST,
@@ -53,26 +53,25 @@ export class WalletService {
     }
     return wallet;
   }
-  async decreaseSaldo(id: number, value: number): Promise<Wallet> {
+  async decreaseBalance(id: number, value: number): Promise<Wallet> {
     const wallet = await this.findOne(id);
-    const saldoAtual = wallet.saldo - value;
+    const balanceAtual = wallet.balance - value;
     const data: UpdateWalletDto = {
-      saldo: saldoAtual,
+      balance: balanceAtual,
       user_id: wallet.user_id,
       tipo_id: wallet.tipo_id,
     };
 
     return await this.update(id, data);
   }
-  async increaseSaldo(id: number, value: number): Promise<Wallet> {
+  async increaseBalance(id: number, value: number): Promise<Wallet> {
     const wallet = await this.findOne(id);
-    const saldoAtual = wallet.saldo + value;
+    const balanceAtual = wallet.balance + value;
     const data: UpdateWalletDto = {
-      saldo: saldoAtual,
+      balance: balanceAtual,
       user_id: wallet.user_id,
       tipo_id: wallet.tipo_id,
     };
-
     return await this.update(id, data);
   }
 }

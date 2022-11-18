@@ -11,6 +11,7 @@ npm i
 ## Configuração .env
 
 Crie arquivo .env e configure suas credenciais seguindo o exemplo do arquivo .env.example
+
 #### Exemplo:
 
 ```
@@ -30,13 +31,13 @@ npm run start:dev
 
 ### Cadastre as permissions
 
-Criar permissões do usuário
+Criar permissions do usuário
 Exemplo:
 
 ```json
 {
   "name": "Criar Transferencia",
-  "descricao": "Permissão de criar transferencia"
+  "description": "Permissão de criar transferencia"
 }
 ```
 
@@ -50,7 +51,7 @@ Criar roles do usuário (ROLE_LOJISTA, ROLE_COMUM)
 ```json
 {
   "name": "ROLE_COMUM",
-  "descricao": "Role de usuário Comum",
+  "description": "Role de usuário Comum",
   "permissions": [1, 2, 3]
 }
 ```
@@ -60,14 +61,14 @@ Criar roles do usuário (ROLE_LOJISTA, ROLE_COMUM)
 ```json
 {
   "name": "ROLE_LOJISTA",
-  "descricao": "Role de usuário Lojista",
+  "description": "Role de usuário Lojista",
   "permissions": [1, 2, 3]
 }
 ```
 
-### Crie 2 usuários para fazer a transferência entre ambos:
+### Crie 2 users para fazer a transferência entre ambos:
 
-Criar um usuário
+Criar User
 
 #### Exemplo:
 
@@ -83,7 +84,7 @@ Criar um usuário
 
 ### Faça a autenticação:
 
-Authenticação do usuário
+Authenticação do User
 
 #### Exemplo:
 
@@ -94,36 +95,36 @@ Authenticação do usuário
 }
 ```
 
-### Crie os tipos de carteira:
+### Crie Wallet Type:
 
-Criar tipos de carteira
+Criar Wallet Type
 
 #### Exemplo:
 
 ```json
 {
   "name": "Carteira Lojista",
-  "descricao": "Tipo de carteira lojista"
+  "description": "Tipo de carteira lojista"
 }
 ```
 
-### Crie 2 carteiras p/ os usuarios cadastrados:
+### Crie 2 Wallet p/ os users cadastrados:
 
-Criar carteira
+Criar Wallet
 
 #### Exemplo:
 
 ```json
 {
-  "saldo": 10,
+  "balance": 10,
   "user_id": 1,
   "tipo_id": 1
 }
 ```
 
-### Crie uma transferencia:
+### Crie uma tranfer:
 
-Criar transferência
+Criar Transfer
 
 #### Exemplo:
 

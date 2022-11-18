@@ -18,7 +18,7 @@ import {
 } from '@nestjs/swagger';
 import { TransferService } from '../services/TranferService';
 
-@Controller('transfer')
+@Controller('transfers')
 @ApiTags('Transferencias')
 @ApiBearerAuth('access-token')
 export class TransferController {

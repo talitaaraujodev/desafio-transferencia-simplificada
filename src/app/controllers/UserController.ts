@@ -19,7 +19,7 @@ import {
 import { CreateUserRoleDto } from '../dto/CreateUserRoleDto';
 import { UserService } from '../services/UserService';
 
-@Controller({ path: 'user' })
+@Controller({ path: 'users' })
 @ApiTags('Usuarios')
 export class UserController {
   constructor(private readonly userService: UserService) {}

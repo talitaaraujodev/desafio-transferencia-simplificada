@@ -11,7 +11,7 @@ export class WalletTypeRepositoryImp implements WalletTypeRepository {
     return await this.prisma.walletType.create({
       data: {
         name: entity.name,
-        descricao: entity.descricao,
+        description: entity.description,
       },
     });
   }
@@ -36,7 +36,7 @@ export class WalletTypeRepositoryImp implements WalletTypeRepository {
     return await this.prisma.walletType.update({
       data: {
         name: entity.name,
-        descricao: entity.descricao,
+        description: entity.description,
       },
       where: {
         id,

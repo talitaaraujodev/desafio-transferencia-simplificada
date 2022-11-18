@@ -21,7 +21,7 @@ import { WalletTypeService } from '../services/WalletTypeService';
 import { CreateWalletTypeDto } from '../dto/CreateWalletTypeDto';
 import { UpdateWalletTypeDto } from '../dto/UpdateWalletTypeDto';
 
-@Controller({ path: 'walletType' })
+@Controller({ path: 'walletTypes' })
 @ApiTags('Tipos de Carteira')
 @ApiBearerAuth('access-token')
 export class WalletTypeController {

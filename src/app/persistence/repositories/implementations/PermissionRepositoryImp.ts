@@ -10,7 +10,7 @@ export class PermissionRepositoryImp implements PermissionRepository {
     return await this.prisma.permissions.create({
       data: {
         name: entity.name,
-        descricao: entity.descricao,
+        description: entity.description,
       },
     });
   }

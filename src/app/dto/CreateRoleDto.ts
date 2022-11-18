@@ -8,5 +8,5 @@ export class CreateRoleDto {
   name: string;
   @IsNotEmpty({ message: 'Descrição é obrigatório' })
   @ApiProperty({ example: 'Role de usuário lojista' })
-  descricao: string;
+  description: string;
 }

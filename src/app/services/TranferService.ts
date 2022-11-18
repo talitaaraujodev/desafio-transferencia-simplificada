@@ -25,18 +25,18 @@ export class TransferService {
     await this.walletService.findOne(data.wallet_destinatario);
     await this.userService.findOne(data.user_origem);
     await this.walletService.findOne(data.user_destinatario);
-    await this.walletService.verifySaldo(data.wallet_origem, data.value);
+    await this.walletService.verifyBalance(data.wallet_origem, data.value);
 
     const transfer = await this.transferRepository.create(data);
     const verifyAuthorization =
       await this.authorizationTransactionClient.authorization();
     const sendEmail = await this.emailClient.notifyEmail();
 
-    const updateWalletOrigem = await this.walletService.decreaseSaldo(
+    const updateWalletOrigem = await this.walletService.decreaseBalance(
       data.wallet_origem,
       data.value,
     );
-    const updateWalletDestinatario = await this.walletService.increaseSaldo(
+    const updateWalletDestinatario = await this.walletService.increaseBalance(
       data.wallet_destinatario,
       data.value,
     );

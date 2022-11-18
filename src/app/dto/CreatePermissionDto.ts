@@ -8,5 +8,5 @@ export class CreatePermissionDto {
   name: string;
   @IsNotEmpty({ message: 'Descrição é obrigatório' })
   @ApiProperty({ example: 'Permissão de criar transferência' })
-  descricao: string;
+  description: string;
 }

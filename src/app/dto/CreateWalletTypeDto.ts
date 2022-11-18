@@ -7,5 +7,5 @@ export class CreateWalletTypeDto {
   name: string;
   @IsNotEmpty({ message: 'Descrição é obrigatório' })
   @ApiProperty({ example: 'Tipo de carteira lojista' })
-  descricao: string;
+  description: string;
 }
