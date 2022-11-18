@@ -23,7 +23,7 @@ import { Wallet } from '../persistence/entities/WalletEntity';
 import { WalletService } from '../services/WalletService';
 
 @Controller({ path: 'wallets' })
-@ApiTags('Carteiras')
+@ApiTags('Wallets')
 @ApiBearerAuth('access-token')
 export class WalletController {
   constructor(

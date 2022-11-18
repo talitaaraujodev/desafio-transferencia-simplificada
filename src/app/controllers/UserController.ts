@@ -21,7 +21,7 @@ import { CreateUserRoleDto } from '../dto/CreateUserRoleDto';
 import { UserService } from '../services/UserService';
 
 @Controller({ path: 'users' })
-@ApiTags('Usuarios')
+@ApiTags('Users')
 export class UserController {
   constructor(
     @Inject('UserService')

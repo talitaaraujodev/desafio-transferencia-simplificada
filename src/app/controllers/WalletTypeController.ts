@@ -23,7 +23,7 @@ import { CreateWalletTypeDto } from '../dto/CreateWalletTypeDto';
 import { UpdateWalletTypeDto } from '../dto/UpdateWalletTypeDto';
 
 @Controller({ path: 'walletTypes' })
-@ApiTags('Tipos de Carteira')
+@ApiTags('Wallet Types')
 @ApiBearerAuth('access-token')
 export class WalletTypeController {
   constructor(

@@ -20,7 +20,7 @@ import {
 import { TransferService } from '../services/TranferService';
 
 @Controller('transfers')
-@ApiTags('Transferencias')
+@ApiTags('Transfers')
 @ApiBearerAuth('access-token')
 export class TransferController {
   constructor(

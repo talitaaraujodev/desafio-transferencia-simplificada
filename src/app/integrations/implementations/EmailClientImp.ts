@@ -10,7 +10,6 @@ export class EmailClientImp implements EmailClient {
     return await axios
       .get(this.BASE_URL)
       .then((res) => {
-        console.log(res.data);
         return res.data;
       })
       .catch((err) => {
