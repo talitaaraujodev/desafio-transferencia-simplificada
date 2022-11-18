@@ -30,15 +30,15 @@ export class TransferController {
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  @ApiOperation({ summary: 'Adicionar uma nova tranferencia' })
+  @ApiOperation({ summary: 'Adicionar uma nova tranfer' })
   async create(@Body() body: CreateTransferDto): Promise<Transfer> {
     return await this.transferService.create(body);
   }
   @Get()
-  @ApiOperation({ summary: 'Listar todas os usuários' })
+  @ApiOperation({ summary: 'Listar todas as transfers' })
   @ApiResponse({
     status: 200,
-    description: 'Lista de transferências retornada com sucesso',
+    description: 'Lista de transfers retornada com sucesso',
     type: Transfer,
     isArray: true,
   })
@@ -46,7 +46,7 @@ export class TransferController {
     return await this.transferService.findAll();
   }
   @Get(':id')
-  @ApiOperation({ summary: 'Exibir os dados de uma transferência' })
+  @ApiOperation({ summary: 'Exibir os dados de uma transfer' })
   async findOne(
     @Param(
       'id',

@@ -29,16 +29,16 @@ export class UserController {
   ) {}
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  @ApiOperation({ summary: 'Adicionar uma novo usuário' })
+  @ApiOperation({ summary: 'Adicionar uma novo user' })
   async create(@Body() body: CreateUserRoleDto): Promise<User> {
     return await this.userService.create(body);
   }
   @ApiBearerAuth('access-token')
   @Get()
-  @ApiOperation({ summary: 'Listar todas os usuários' })
+  @ApiOperation({ summary: 'Listar todas os users' })
   @ApiResponse({
     status: 200,
-    description: 'Lista de usuarios retornada com sucesso',
+    description: 'Lista de users retornada com sucesso',
     type: User,
     isArray: true,
   })
@@ -47,7 +47,7 @@ export class UserController {
   }
   @ApiBearerAuth('access-token')
   @Get(':id')
-  @ApiOperation({ summary: 'Exibir os dados de um usuário' })
+  @ApiOperation({ summary: 'Exibir os dados de um user' })
   async findOne(
     @Param(
       'id',
@@ -59,7 +59,7 @@ export class UserController {
   }
   @ApiBearerAuth('access-token')
   @Delete(':id')
-  @ApiOperation({ summary: 'Remover um usuário' })
+  @ApiOperation({ summary: 'Remover um user' })
   async delete(
     @Param(
       'id',

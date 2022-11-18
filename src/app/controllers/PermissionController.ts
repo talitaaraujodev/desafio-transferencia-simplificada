@@ -20,13 +20,14 @@ export class PermissionController {
     private readonly permissionService: PermissionService,
   ) {}
 
+  @ApiOperation({ summary: 'Adicionar uma nova permission' })
   @Post()
   @HttpCode(HttpStatus.CREATED)
   async create(@Body() body: CreatePermissionDto): Promise<Permission> {
     return await this.permissionService.create(body);
   }
   @Get()
-  @ApiOperation({ summary: 'Listar todas as permissões' })
+  @ApiOperation({ summary: 'Listar todas as permissions' })
   @ApiResponse({
     status: 200,
     description: 'Lista de permissions retornada com sucesso',

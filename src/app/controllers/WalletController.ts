@@ -33,15 +33,15 @@ export class WalletController {
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  @ApiOperation({ summary: 'Adicionar uma nova carteira' })
+  @ApiOperation({ summary: 'Adicionar uma nova wallet' })
   async create(@Body() body: CreateWalletDto): Promise<Wallet> {
     return await this.walletService.create(body);
   }
   @Get()
-  @ApiOperation({ summary: 'Listar todas as carteiras' })
+  @ApiOperation({ summary: 'Listar todas as wallets' })
   @ApiResponse({
     status: 200,
-    description: 'Lista de carteiras retornada com sucesso',
+    description: 'Lista de wallets retornada com sucesso',
     type: Wallet,
     isArray: true,
   })
@@ -49,7 +49,7 @@ export class WalletController {
     return await this.walletService.findAll();
   }
   @Put(':id')
-  @ApiOperation({ summary: 'Atualizar os dados de uma carteira' })
+  @ApiOperation({ summary: 'Atualizar os dados de uma wallet' })
   async update(
     @Param(
       'id',
@@ -61,7 +61,7 @@ export class WalletController {
     return await this.walletService.update(id, body);
   }
   @Get(':id')
-  @ApiOperation({ summary: 'Exibir os dados de uma carteira' })
+  @ApiOperation({ summary: 'Exibir os dados de uma wallet' })
   async findOne(
     @Param(
       'id',
@@ -72,7 +72,7 @@ export class WalletController {
     return await this.walletService.findOne(id);
   }
   @Delete(':id')
-  @ApiOperation({ summary: 'Remover uma carteira' })
+  @ApiOperation({ summary: 'Remover uma wallet' })
   async delete(
     @Param(
       'id',

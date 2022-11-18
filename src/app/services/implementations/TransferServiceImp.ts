@@ -45,7 +45,7 @@ export class TransferServiceImp implements TransferService {
     );
     const findLastIdTransfer = await this.transferRepository.findLastId();
 
-    const result: any = Promise.all([
+    const result = Promise.all([
       transfer,
       verifyAuthorization,
       findLastIdTransfer,

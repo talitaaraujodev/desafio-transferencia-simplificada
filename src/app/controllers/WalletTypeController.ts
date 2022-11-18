@@ -32,15 +32,15 @@ export class WalletTypeController {
   ) {}
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  @ApiOperation({ summary: 'Adicionar uma novo tipo de carteira' })
+  @ApiOperation({ summary: 'Adicionar uma novo wallet type' })
   async create(@Body() body: CreateWalletTypeDto): Promise<WalletType> {
     return await this.walletTypeService.create(body);
   }
   @Get()
-  @ApiOperation({ summary: 'Listar todas os tipos de carteira' })
+  @ApiOperation({ summary: 'Listar todas os wallet type' })
   @ApiResponse({
     status: 200,
-    description: 'Lista de tipos de carteira retornada com sucesso',
+    description: 'Lista de wallet type retornada com sucesso',
     type: WalletType,
     isArray: true,
   })
@@ -48,7 +48,7 @@ export class WalletTypeController {
     return await this.walletTypeService.findAll();
   }
   @Get(':id')
-  @ApiOperation({ summary: 'Exibir os dados de uma carteira' })
+  @ApiOperation({ summary: 'Exibir os dados de um wallet type' })
   async findOne(
     @Param(
       'id',
@@ -59,7 +59,7 @@ export class WalletTypeController {
     return await this.walletTypeService.findOne(id);
   }
   @Delete(':id')
-  @ApiOperation({ summary: 'Remover um tipo de carteira' })
+  @ApiOperation({ summary: 'Remover um wallet type' })
   async delete(
     @Param(
       'id',
@@ -70,7 +70,7 @@ export class WalletTypeController {
     return await this.walletTypeService.delete(id);
   }
   @Put(':id')
-  @ApiOperation({ summary: 'Atualizar um tipo de carteira' })
+  @ApiOperation({ summary: 'Atualizar um wallet type' })
   async update(
     @Param(
       'id',
