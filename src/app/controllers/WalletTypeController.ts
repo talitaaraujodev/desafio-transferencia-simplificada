@@ -10,6 +10,7 @@ import {
   ParseIntPipe,
   Delete,
   Put,
+  Inject,
 } from '@nestjs/common';
 import {
   ApiBearerAuth,
@@ -25,7 +26,10 @@ import { UpdateWalletTypeDto } from '../dto/UpdateWalletTypeDto';
 @ApiTags('Tipos de Carteira')
 @ApiBearerAuth('access-token')
 export class WalletTypeController {
-  constructor(private readonly walletTypeService: WalletTypeService) {}
+  constructor(
+    @Inject('WalletTypeService')
+    private readonly walletTypeService: WalletTypeService,
+  ) {}
   @Post()
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Adicionar uma novo tipo de carteira' })

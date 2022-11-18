@@ -1,6 +1,6 @@
 export class Wallet {
   id?: number;
-  balance: number;
+  balance: any;
   user_id: number;
   tipo_id: number;
 

@@ -1,21 +1,21 @@
+import { WalletServiceImp } from './../services/implementations/WalletServiceImp';
+import { TransferServiceImp } from './../services/implementations/TransferServiceImp';
 import { Module } from '@nestjs/common';
 import { EmailClientImp } from './../integrations/implementations/EmailClientImp';
 import { AuthorizationTransactionClientImp } from '../integrations/implementations/AuthorizationTransactionClientImp';
 import { WalletTypeRepositoryImp } from '../persistence/repositories/implementations/WalletTypeRepositoryImp';
-import { WalletTypeService } from '../services/WalletTypeService';
 import { WalletRepositoryImp } from '../persistence/repositories/implementations/WalletRepositoryImp';
-import { UserService } from '../services/UserService';
 import { PermissionRoleRepositoryImp } from '../persistence/repositories/implementations/PermissionRoleRepositoryImp';
 import { PermissionRepositoryImp } from '../persistence/repositories/implementations/PermissionRepositoryImp';
 import { RoleRepositoryImp } from '../persistence/repositories/implementations/RoleRepositoryImp';
 import { UserRoleRepositoryImp } from '../persistence/repositories/implementations/UserRoleRepositoryImp';
 import { UserRepositoryImp } from '../persistence/repositories/implementations/UserRepositoryImp';
-import { WalletService } from '../services/WalletService';
 import { TransferRepositoryImp } from '../persistence/repositories/implementations/TransferRepositoryImp';
 import { TransferController } from '../controllers/TransferController';
-import { TransferService } from '../services/TranferService';
 import { PrismaService } from '../config/database/PrismaService';
-import { RoleService } from '../services/RoleService';
+import { RoleServiceImp } from '../services/implementations/RoleServiceImp';
+import { UserServiceImp } from '../services/implementations/UserServiceImp';
+import { WalletTypeServiceImp } from '../services/implementations/WalletTypeServiceImp';
 
 @Module({
   controllers: [TransferController],
@@ -60,13 +60,27 @@ import { RoleService } from '../services/RoleService';
       provide: 'AuthorizationTransactionClient',
       useClass: AuthorizationTransactionClientImp,
     },
-    TransferService,
-    UserService,
-    WalletService,
-    WalletTypeService,
-    RoleService,
+    {
+      provide: 'RoleService',
+      useClass: RoleServiceImp,
+    },
+    {
+      provide: 'TransferService',
+      useClass: TransferServiceImp,
+    },
+    {
+      provide: 'UserService',
+      useClass: UserServiceImp,
+    },
+    {
+      provide: 'WalletService',
+      useClass: WalletServiceImp,
+    },
+    {
+      provide: 'WalletTypeService',
+      useClass: WalletTypeServiceImp,
+    },
     PrismaService,
   ],
-  exports: [TransferService],
 })
 export class TransferModule {}

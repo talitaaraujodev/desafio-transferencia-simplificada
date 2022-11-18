@@ -15,6 +15,7 @@ import {
   Param,
   Post,
   ParseIntPipe,
+  Inject,
 } from '@nestjs/common';
 import { CreateUserRoleDto } from '../dto/CreateUserRoleDto';
 import { UserService } from '../services/UserService';
@@ -22,7 +23,10 @@ import { UserService } from '../services/UserService';
 @Controller({ path: 'users' })
 @ApiTags('Usuarios')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    @Inject('UserService')
+    private readonly userService: UserService,
+  ) {}
   @Post()
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'Adicionar uma novo usuário' })

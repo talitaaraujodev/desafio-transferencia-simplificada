@@ -9,6 +9,7 @@ import {
   Get,
   Param,
   ParseIntPipe,
+  Inject,
 } from '@nestjs/common';
 import {
   ApiBearerAuth,
@@ -22,7 +23,10 @@ import { TransferService } from '../services/TranferService';
 @ApiTags('Transferencias')
 @ApiBearerAuth('access-token')
 export class TransferController {
-  constructor(private readonly transferService: TransferService) {}
+  constructor(
+    @Inject('TransferService')
+    private readonly transferService: TransferService,
+  ) {}
 
   @Post()
   @HttpCode(HttpStatus.CREATED)

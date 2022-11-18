@@ -18,7 +18,13 @@ export class UserRepositoryImp implements UserRepository {
     });
   }
   async findAll(): Promise<User[]> {
-    return await this.prisma.users.findMany();
+    return await this.prisma.users.findMany({
+      select: {
+        name: true,
+        cpf_cnpj: true,
+        email: true,
+      },
+    });
   }
   async findOne(id: number): Promise<User> {
     return await this.prisma.users.findUnique({

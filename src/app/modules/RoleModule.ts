@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { PrismaService } from '../config/database/PrismaService';
-import { RoleService } from '../services/RoleService';
 import { PermissionRoleRepositoryImp } from '../persistence/repositories/implementations/PermissionRoleRepositoryImp';
 import { PermissionRepositoryImp } from '../persistence/repositories/implementations/PermissionRepositoryImp';
 import { RoleRepositoryImp } from '../persistence/repositories/implementations/RoleRepositoryImp';
 import { RoleController } from '../controllers/RoleController';
+import { RoleServiceImp } from '../services/implementations/RoleServiceImp';
 
 @Module({
   controllers: [RoleController],
@@ -21,9 +21,11 @@ import { RoleController } from '../controllers/RoleController';
       provide: 'RoleRepository',
       useClass: RoleRepositoryImp,
     },
-    RoleService,
+    {
+      provide: 'RoleService',
+      useClass: RoleServiceImp,
+    },
     PrismaService,
   ],
-  exports: [RoleService],
 })
 export class RoleModule {}

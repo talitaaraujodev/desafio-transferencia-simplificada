@@ -5,6 +5,7 @@ import {
   HttpCode,
   HttpStatus,
   Post,
+  Inject,
 } from '@nestjs/common';
 import { ApiOperation, ApiTags, ApiResponse } from '@nestjs/swagger';
 import { Permission } from '../persistence/entities/PermissionEntity';
@@ -14,7 +15,10 @@ import { CreatePermissionDto } from '../dto/CreatePermissionDto';
 @Controller({ path: 'permissions' })
 @ApiTags('Permissions')
 export class PermissionController {
-  constructor(private readonly permissionService: PermissionService) {}
+  constructor(
+    @Inject('PermissionService')
+    private readonly permissionService: PermissionService,
+  ) {}
 
   @Post()
   @HttpCode(HttpStatus.CREATED)

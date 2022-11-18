@@ -9,6 +9,7 @@ import {
   HttpStatus,
   HttpCode,
   Body,
+  Inject,
 } from '@nestjs/common';
 import {
   ApiBearerAuth,
@@ -25,7 +26,10 @@ import { WalletService } from '../services/WalletService';
 @ApiTags('Carteiras')
 @ApiBearerAuth('access-token')
 export class WalletController {
-  constructor(private readonly walletService: WalletService) {}
+  constructor(
+    @Inject('WalletService')
+    private readonly walletService: WalletService,
+  ) {}
 
   @Post()
   @HttpCode(HttpStatus.CREATED)

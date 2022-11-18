@@ -4,6 +4,7 @@ import {
   ForbiddenException,
   Type,
   mixin,
+  Inject,
 } from '@nestjs/common';
 import { NextFunction, Request, Response } from 'express';
 import { decode } from 'jsonwebtoken';
@@ -14,7 +15,10 @@ export function PermissionMiddlewareCreator(
 ): Type<NestMiddleware> {
   @Injectable()
   class PermissionMiddleware implements NestMiddleware {
-    constructor(private readonly usuarioService: UserService) {}
+    constructor(
+      @Inject('UserService')
+      private readonly usuarioService: UserService,
+    ) {}
     async use(req: Request, res: Response, next: NextFunction) {
       const authHeader = req.headers.authorization || '';
 

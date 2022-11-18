@@ -9,7 +9,7 @@ export class WalletRepositoryImp implements WalletRepository {
   async create(entity: Wallet): Promise<Wallet> {
     return await this.prisma.wallets.create({
       data: {
-        balance: entity.balance,
+        balance: parseFloat(entity.balance),
         user_id: entity.user_id,
         tipo_id: entity.tipo_id,
       },
@@ -35,7 +35,7 @@ export class WalletRepositoryImp implements WalletRepository {
   async update(id: number, entity: Wallet): Promise<Wallet> {
     return await this.prisma.wallets.update({
       data: {
-        balance: entity.balance,
+        balance: parseFloat(entity.balance),
         user_id: entity.user_id,
         tipo_id: entity.tipo_id,
       },

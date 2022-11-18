@@ -3,13 +3,13 @@ export class User {
   name: string;
   cpf_cnpj: string;
   email: string;
-  password: string;
+  password?: string;
 
   constructor(
     name: string,
     cpf_cnpj: string,
     email: string,
-    password: string,
+    password?: string,
     id?: number,
   ) {
     this.name = name;
