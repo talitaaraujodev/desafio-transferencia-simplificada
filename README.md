@@ -20,14 +20,14 @@ JWT_SECRET = secret
 PORT = 3333
 ```
 
-## Execução do Projeto
+## Execução do Projeto :rocket:
 
 ```
 npx prisma migrate dev
 npm run start:dev
 ```
 
-## Fluxo do Projeto
+## Fluxo do Projeto :wave:
 
 ### Cadastre as permissions
 
@@ -138,10 +138,10 @@ Criar Transfer
 }
 ```
 
-## Documentação
+## Documentação :heart:
 
 <p align="center">
-    <img alt="Documentação" src="./src/app/helpers/swagger/swagger.png"/>
+    <img alt="Documentação" src="./src/app/helpers/swagger/documentation.png"/>
 </p>
 
 ```
